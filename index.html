@@ -1,0 +1,2322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE E-KIOSK</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css"
+/>
+
+<script
+src="https://unpkg.com/leaflet/dist/leaflet.js">
+</script>
+</head>
+
+<body>
+    <!-- ADS IDLE PAGE -->
+<div class="ads-page" id="adsPage" onclick="showHomeFromAds()">
+
+    <div class="ads-content">
+
+        <img id="adImage" src="https://apigw-prd.one.al/oneal/v1/uploads/828292320_my_one_app_27e122577b.png" alt="One Albania Ad">
+
+        <div class="ad-text-box">
+            <h1 id="adTitle">My One App</h1>
+            <p id="adDescription">
+                Manage your services, top up, activate packages and stay connected with One Albania.
+            </p>
+        </div>
+
+        <div class="tap-hint">
+            Touch the screen to start
+        </div>
+
+    </div>
+
+</div>
+<div
+    class="corner-logo"
+    id="cornerLogo"
+    onclick="goHome()"
+    title="Return to Home"
+>
+    <img
+        src="https://www.gsma.com/get-involved/gsma-membership/wp-content/uploads/2014/06/one_logo-002.png"
+        alt="One Albania"
+    >
+</div>
+<button id="logoutBtn" class="logout-btn" onclick="logoutUser()">
+    Exit
+</button>
+<img
+    src="https://apigw-prd.one.al/oneal/v1/uploads/website_header_EN_1_f93fdb2573.png"
+    class="background-logo"
+    alt="Background Logo"
+>
+
+    <div class="language-switch">
+        <img src="https://flagcdn.com/w40/al.png" alt="Albanian" class="flag" onclick="setLanguage('sq')">
+        <img src="https://flagcdn.com/w40/gb.png" alt="English" class="flag" onclick="setLanguage('en')">
+    </div>
+
+    <!-- FIRST PAGE -->
+   <div class="container" id="homePage" style="display:none;">
+
+        <img
+            src="https://www.gsma.com/get-involved/gsma-membership/wp-content/uploads/2014/06/one_logo-002.png"
+            alt="One Albania Logo"
+            class="logo"
+        >
+
+        <h1 id="mainTitle">ONE E-KIOSK</h1>
+
+        <p class="subtitle" id="subtitle">
+            Fast. Simple. Efficient.
+        </p>
+
+        <button class="start-btn" onclick="showPhonePage()" id="startBtn">
+            Start
+        </button>
+        <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<div class="home-social">
+
+    <p>Follow One Albania</p>
+
+    <div class="home-social-icons">
+
+        <a href="#">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <a href="#">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="#">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+
+        <a href="#">
+            <i class="fab fa-youtube"></i>
+        </a>
+
+    </div>
+
+</div>
+
+</div>
+
+    </div>
+    <!-- PHONE NUMBER PAGE -->
+    <div class="auth-page" id="phonePage">
+
+        <div class="auth-card">
+
+            <h2 id="phoneTitle">Enter your mobile number</h2>
+
+            <p id="phoneSubtitle">
+                We will send you an OTP for verification
+            </p>
+
+            <div class="phone-input-box">
+                <span class="phone-icon">📱</span>
+                <span class="country-code">+355</span>
+
+                <input
+                    type="text"
+                    id="phoneNumber"
+                    placeholder="68 123 4567"
+                    maxlength="12"
+                >
+            </div>
+<div class="consent-box">
+
+    <input
+        type="checkbox"
+        id="consentCheckbox"
+    >
+
+    <label for="consentCheckbox">
+
+    <span id="consentText">
+        I have read and agree to the
+    </span>
+
+    <a
+        href="#"
+        id="termsText"
+        onclick="openTermsModal()"
+    >
+        Terms & Conditions
+    </a>
+
+    <span id="andText">
+        and
+    </span>
+
+    <a
+        href="#"
+        id="privacyText"
+        onclick="openPrivacyPolicyModal()"
+    >
+        Privacy Policy
+    </a>
+
+</label>
+    </label>
+
+</div>
+          <button class="primary-btn" onclick="showOtpPage()" id="sendOtpBtn">
+    Send OTP
+</button>
+
+
+
+<div class="guest-section">
+
+    
+
+      
+
+        <div class="guest-section">
+
+    <div class="guest-divider"></div>
+
+    <div
+        class="guest-card"
+        onclick="showGuestDashboard()"
+    >
+
+        <span class="guest-icon">👤</span>
+
+        <div class="guest-text">
+
+            <h3 id="guestTitle">
+                New to One Albania?
+            </h3>
+
+            <p id="guestSubtitle">
+                Explore Services & Offers
+            </p>
+
+        </div>
+
+        <span class="guest-arrow"></span>
+
+    </div>
+
+</div>
+
+</div>
+
+<button class="back-btn" onclick="goHome()" id="backHomeBtn">
+    Back to Home
+</button>
+
+        </div>
+
+    </div>
+
+    <!-- OTP PAGE -->
+    <div class="auth-page" id="otpPage">
+
+        <div class="auth-card">
+
+            <h2 id="otpTitle">Enter OTP</h2>
+
+            <p id="otpSubtitle">
+                We have sent a 6-digit code to your phone
+            </p>
+
+            <div class="otp-boxes">
+
+    <input
+        class="otp-full"
+        type="text"
+        maxlength="6"
+        placeholder="123456"
+        id="otpInput"
+    >
+
+</div>
+
+            <p class="otp-hint" id="otpHint">
+                Demo OTP: 123456
+            </p>
+
+            <button class="primary-btn" onclick="showDashboard()" id="verifyBtn">
+                Verify
+            </button>
+
+            <button class="back-btn" onclick="goPhonePage()" id="backBtn">
+                Back
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- DASHBOARD PAGE -->
+    <div class="dashboard-page" id="dashboardPage">
+
+        <div class="welcome-section">
+
+            <h2 id="dashboardTitle">
+                Welcome to One Albania
+            </h2>
+
+            <p id="dashboardSubtitle">
+                Your digital self-service hub
+            </p>
+
+        </div>
+
+        <div class="dashboard-grid">
+
+    <button class="dashboard-card" id="payBillCard">
+    💳<br>Pay Bill
+</button>
+
+<button
+    class="dashboard-card"
+    onclick="showTopUpPage()"
+>
+    📲<br>Top-Up
+</button>
+
+<button class="dashboard-card" id="buyPackageCard">
+    📦<br>Buy Package
+</button>
+
+<button class="dashboard-card" id="fiberCoverageCard">
+    📍<br>Fiber Coverage
+</button>
+
+<button class="dashboard-card" id="bookAppointmentCard">
+    📅<br>Book Appointment
+</button>
+
+<button class="dashboard-card" id="roamingCard">
+    🌍<br>Roaming Activation
+</button>
+
+</div>
+
+<button
+    class="back-btn"
+    onclick="goOtpPage()"
+    id="dashboardBackBtn"
+>
+    Back
+</button>
+
+    </div>
+<!-- GUEST DASHBOARD -->
+
+<div class="guest-dashboard-page" id="guestDashboardPage">
+
+    <h2
+    class="guest-dashboard-title"
+    id="guestDashboardTitle"
+>
+    Explore One Albania
+</h2>
+
+    <div class="guest-dashboard-grid">
+
+    <button
+        class="dashboard-card"
+        onclick="showMobilePage()"
+    >
+        📱 Mobile
+    </button>
+
+    <button
+        class="dashboard-card"
+        onclick="showInternetTvPage()"
+    >
+        🌐 Internet & TV
+    </button>
+
+</div>
+
+<div class="guest-register-section">
+
+    <div class="or-divider">
+        <span>OR</span>
+    </div>
+
+   <button
+    class="register-btn"
+    onclick="openRegisterConsentModal()"
+>
+    REGISTER
+</button>
+
+</div>
+
+<button
+    class="back-btn"
+    onclick="goPhonePage()"
+>
+    Back
+</button>
+
+</div>
+<!-- ID SCAN PAGE -->
+
+<div class="dashboard-page" id="idScanPage">
+
+    <div class="auth-card id-scan-card">
+
+        <h2>Scan Your ID Card</h2>
+
+        <p>
+            Place your ID card in the highlighted scanner area below.
+        </p>
+
+        <div class="id-animation-container">
+
+    <div class="scanner-machine">
+
+        <div class="scanner-screen">
+            Insert ID
+        </div>
+
+        <div class="scanner-slot">
+    <div class="scan-beam"></div>
+</div>
+
+    </div>
+
+    <div class="id-card">
+
+        <div class="id-photo"></div>
+
+        <div class="id-lines"></div>
+
+    </div>
+
+</div>
+
+        <div class="scan-instructions">
+
+            <p>✓ Insert front side of ID card</p>
+            <p>✓ Keep the card steady</p>
+            <p>✓ Wait until scanning is completed</p>
+
+        </div>
+
+        <button
+            class="register-btn"
+            onclick="startIdScan()"
+        >
+            Start Scan
+        </button>
+
+        <button
+            class="back-btn"
+            onclick="closeIdScanPage()"
+        >
+            Back
+        </button>
+
+    </div>
+
+
+
+</div>
+<div id="customerInfoPage" class="auth-page">
+
+    <div class="auth-card customer-info-card">
+
+        <h2>Verify Your Information</h2>
+
+        <p>
+            Information was automatically extracted from
+            your identity document.
+            Please review and edit if necessary.
+        </p>
+
+        <div class="info-form">
+
+            <div class="form-group">
+                <label>First Name</label>
+                <input
+                    type="text"
+                    value="Ardit"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Last Name</label>
+                <input
+                    type="text"
+                    value="Hoxha"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>ID Number</label>
+                <input
+                    type="text"
+                    value="J12345678L"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Personal Number</label>
+                <input
+                    type="text"
+                    value="L00101001A"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input
+                    type="date"
+                    value="1998-04-12"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Nationality</label>
+                <input
+                    type="text"
+                    value="Albanian"
+                >
+            </div>
+
+<div class="form-group">
+    <label>Gender</label>
+    <input
+        type="text"
+        value="Male"
+    >
+</div>
+
+<div class="form-group">
+    <label>Issuing Country</label>
+    <input
+        type="text"
+        value="Albania"
+    >
+</div>
+
+<div class="form-group">
+    <label>Document Expiration Date</label>
+    <input
+        type="date"
+        value="2033-04-12"
+    >
+</div>
+
+
+
+
+            <div class="form-group full-width">
+    <label>Address</label>
+    <input
+        type="text"
+        value="Rr. Teuta, Durrës, Albania"
+    >
+</div>
+
+        </div>
+
+        <button
+            class="primary-btn"
+            onclick="showFaceVerificationPage()"
+        >
+            Continue
+        </button>
+
+        <button
+            class="back-btn"
+            onclick="showIdScanPage()"
+        >
+            Back
+        </button>
+
+   </div>
+
+</div>
+
+<!-- FACE VERIFICATION PAGE -->
+
+<div id="faceVerificationPage" class="auth-page">
+
+    <div class="auth-card face-verification-card">
+
+        <h2>Face Verification</h2>
+
+        <p>
+            Comparing identity document photo with live verification.
+        </p>
+
+        <div class="face-comparison">
+
+            <div class="face-box">
+
+    <h3>ID Photo</h3>
+
+    <img
+        src="images/id-photo.png" 
+        class="face-image"
+    >
+
+</div>
+
+            <div class="face-box">
+
+    <h3>Live Verification</h3>
+
+    <video
+        autoplay
+        muted
+        playsinline
+        loop
+        class="face-video"
+    >
+        <source
+            src="videos/verification-video.mp4"
+            type="video/mp4"
+        >
+    </video>
+
+    <div class="scan-line"></div>
+
+</div>
+
+        </div>
+
+        <div id="verificationStatus">
+            Click Start Verification
+        </div>
+
+        <button
+            class="primary-btn"
+            onclick="startFaceVerification()"
+        >
+            Start Verification
+        </button>
+
+        <button
+            class="back-btn"
+            onclick="showCustomerInfoPage()"
+        >
+            Back
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- SIM TYPE PAGE -->
+
+<div id="simTypePage" class="auth-page">
+
+    <div class="auth-card sim-type-main-card">
+
+        <h2>Choose SIM Type</h2>
+
+        <p>Select how the customer wants to receive the mobile service.</p>
+
+        <div class="sim-type-grid">
+
+<div class="sim-type-card" onclick="selectSimType('physical', this)">
+                    <h3>📱 Physical SIM</h3>
+                <p>Traditional SIM card dispensed by the kiosk.</p>
+            </div>
+
+<div class="sim-type-card" onclick="selectSimType('esim', this)">
+                    <h3>📶 eSIM</h3>
+                <p>Digital SIM profile activated with QR code.</p>
+            </div>
+
+        </div>
+
+        <button class="primary-btn" onclick="continueSimType()">
+            Continue
+        </button>
+
+        <button class="back-btn" onclick="showFaceVerificationPage()">
+            Back
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- MOBILE PAGE -->
+
+<div class="guest-dashboard-page" id="mobilePage">
+
+    <h2 class="guest-dashboard-title" id="mobileTitle">
+        Mobile Services
+    </h2>
+
+    <div class="mobile-grid">
+
+        <button
+            class="dashboard-card"
+            onclick="showPrepaidPage()"
+        >
+            📱
+            <br>
+            Prepaid
+        </button>
+
+        <button class="dashboard-card">
+            📄
+            <br>
+            Postpaid
+        </button>
+
+        <button
+    class="dashboard-card"
+    onclick="showTouristPage()"
+>
+    ✈️
+    <br>
+    Tourist
+</button>
+
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="showGuestDashboard()"
+    >
+        Back
+    </button>
+
+</div>
+<!-- TOURIST PAGE -->
+
+<div class="guest-dashboard-page" id="touristPage">
+
+    <h2 class="guest-dashboard-title">
+        Tourist Packages
+    </h2>
+
+    <div class="packages-grid">
+
+        <div class="package-card">
+            <h3>Tourist 1M Albania and Balkan</h3>
+            <p>1 Million MB Internet</p>
+            <p>22000 MB Internet in Western Balkans</p>
+            <p>1 Million National Minutes</p>
+            <p>1 Million National SMS</p>
+            <p>30 Days</p>
+            <p class="fiber-price">3200 Lekë</p>
+        </div>
+
+        <div class="package-card">
+            <h3>Tourist 1M Albania</h3>
+            <p>1 Million MB Internet</p>
+            <p>1 Million National Minutes</p>
+            <p>1 Million National SMS</p>
+            <p>15 Days</p>
+            <p class="fiber-price">2700 Lekë</p>
+        </div>
+
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="showMobilePage()"
+    >
+        Back
+    </button>
+
+</div>
+<!-- INTERNET & TV PAGE -->
+
+<div class="guest-dashboard-page" id="internetTvPage">
+
+    <h2 class="guest-dashboard-title">
+        Internet & TV Services
+    </h2>
+
+    <div class="internet-grid">
+
+        <button
+    class="dashboard-card"
+    onclick="showUltraFiberPage()"
+>
+    📡<br>
+    One Ultra Fiber
+</button>
+
+        <button
+    class="dashboard-card"
+    onclick="showHomeNetPage()"
+>
+    🏠<br>
+    One HomeNet
+</button>
+
+<button
+    class="dashboard-card"
+    onclick="showOneSafePage()"
+>
+    🛡️<br>
+    One Safe
+</button>
+
+        <button
+    class="dashboard-card"
+    onclick="showIptvPage()"
+>
+    📺<br>
+    One IPTV
+</button>
+
+        <button class="dashboard-card" onclick="showTvAppPage()">
+    📱<br>
+    One TV App
+</button>
+
+       <button
+    class="dashboard-card"
+    onclick="showHomeNetTvPage()"
+>
+    📺
+    HomeNet TV
+</button>
+
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="showGuestDashboard()"
+    >
+        Back
+    </button>
+
+</div>
+<!-- ULTRA FIBER PAGE -->
+
+<div class="guest-dashboard-page" id="ultraFiberPage">
+
+    <h2 class="guest-dashboard-title">
+        One Ultra Fiber
+    </h2>
+
+    <div class="fiber-slider">
+
+        <button
+            class="slider-arrow"
+            onclick="previousFiber()"
+        >
+            ◀
+        </button>
+
+        <div class="fiber-grid">
+
+            <!-- Fiber 100 -->
+
+            <div class="fiber-card" id="fiberCard1">
+
+                <h3>One Ultra Fiber 100</h3>
+
+                <p><strong>100 Mbps (Wi-Fi 6)</strong></p>
+                <p>50 Mbps Upload</p>
+
+                <div class="contract-switch">
+
+                    <button onclick="setFiberPrice('fiber100','12')">
+                        12 Months
+                    </button>
+
+                    <button onclick="setFiberPrice('fiber100','24')">
+                        24 Months
+                    </button>
+
+                </div>
+
+                <p
+                    class="fiber-price"
+                    id="fiber100Price"
+                >
+                    1300 Lek/month
+                </p>
+
+            </div>
+
+            <!-- Fiber 300 -->
+
+            <div class="fiber-card" id="fiberCard2">
+
+                <h3>One Ultra Fiber 300</h3>
+
+                <p><strong>300 Mbps (Wi-Fi 6)</strong></p>
+                <p>50 Mbps Upload</p>
+
+                <div class="contract-switch">
+
+                    <button onclick="setFiberPrice('fiber300','12')">
+                        12 Months
+                    </button>
+
+                    <button onclick="setFiberPrice('fiber300','24')">
+                        24 Months
+                    </button>
+
+                </div>
+
+                <p
+                    class="fiber-price"
+                    id="fiber300Price"
+                >
+                    1600 Lek/month
+                </p>
+
+            </div>
+
+            <!-- Fiber 1 Gbps -->
+
+            <div class="fiber-card" id="fiberCard3">
+
+                <h3>One Ultra Fiber 1 Gbps</h3>
+
+                <p><strong>1 Gbps (Wi-Fi 6)</strong></p>
+                <p>100 Mbps Upload</p>
+
+                <div class="contract-switch">
+
+                    <button onclick="setFiberPrice('fiber1','12')">
+                        12 Months
+                    </button>
+
+                    <button onclick="setFiberPrice('fiber1','24')">
+                        24 Months
+                    </button>
+
+                </div>
+
+                <p
+                    class="fiber-price"
+                    id="fiber1Price"
+                >
+                    1900 Lek/month
+                </p>
+
+            </div>
+
+            <!-- Fiber 2.5 -->
+
+            <div class="fiber-card" id="fiberCard4">
+
+                <h3>One Ultra Fiber 2.5</h3>
+
+                <p><strong>2.5 Gbps (Wi-Fi 6)</strong></p>
+                <p>500 Mbps Upload</p>
+
+                <div class="contract-switch">
+
+                    <button onclick="setFiberPrice('fiber25','12')">
+                        12 Months
+                    </button>
+
+                    <button onclick="setFiberPrice('fiber25','24')">
+                        24 Months
+                    </button>
+
+                </div>
+
+                <p
+                    class="fiber-price"
+                    id="fiber25Price"
+                >
+                    3500 Lek/month
+                </p>
+
+            </div>
+
+            <!-- Fiber 10 -->
+
+            <div class="fiber-card" id="fiberCard5">
+
+                <h3>One Ultra Fiber 10</h3>
+
+                <p><strong>10 Gbps (Wi-Fi 6)</strong></p>
+                <p>10 Gbps Upload</p>
+
+                <div class="contract-switch">
+
+                    <button onclick="setFiberPrice('fiber10','12')">
+                        12 Months
+                    </button>
+
+                    <button onclick="setFiberPrice('fiber10','24')">
+                        24 Months
+                    </button>
+
+                </div>
+
+                <p
+                    class="fiber-price"
+                    id="fiber10Price"
+                >
+                    7000 Lek/month
+                </p>
+
+            </div>
+
+        </div>
+
+        <button
+            class="slider-arrow"
+            onclick="nextFiber()"
+        >
+            ▶
+        </button>
+
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="showInternetTvPage()"
+    >
+        Back
+    </button>
+
+</div>
+
+<!-- HOMENET PAGE -->
+
+<div class="guest-dashboard-page" id="homeNetPage">
+
+```
+<h2 class="guest-dashboard-title">
+    Planet HomeNet
+</h2>
+
+<div class="fiber-grid">
+
+    <div class="fiber-card">
+
+        <h3>HomeNet Advance</h3>
+
+        <p><strong>Unlimited Internet</strong></p>
+
+        <p>510 GB Fair Usage</p>
+
+        <p>300 / 50 Mbps</p>
+
+        <div class="contract-switch">
+
+            <button onclick="setHomeNetPrice('advance','12')">
+                12 Months
+            </button>
+
+            <button onclick="setHomeNetPrice('advance','24')">
+                24 Months
+            </button>
+
+        </div>
+
+        <p
+            class="fiber-price"
+            id="advancePrice"
+        >
+            1320 Lek/month
+        </p>
+
+    </div>
+
+    <div class="fiber-card">
+
+        <h3>One HomeNet 5G</h3>
+
+        <p><strong>Unlimited Internet</strong></p>
+
+        <p>1034 GB 5G</p>
+
+        <p>2 Gbps / 150 Mbps</p>
+
+        <div class="contract-switch">
+
+            <button onclick="setHomeNetPrice('homenet5g','12')">
+                12 Months
+            </button>
+
+            <button onclick="setHomeNetPrice('homenet5g','24')">
+                24 Months
+            </button>
+
+        </div>
+
+        <p
+            class="fiber-price"
+            id="homenet5gPrice"
+        >
+            1630 Lek/month
+        </p>
+
+    </div>
+
+</div>
+
+<button
+    class="back-btn"
+    onclick="showInternetTvPage()"
+>
+    Back
+</button>
+```
+
+</div>
+
+</div>
+
+<!-- HOMENET TV PAGE -->
+
+<div class="guest-dashboard-page" id="homeNetTvPage">
+
+    <h2 class="guest-dashboard-title">
+        One HomeNet TV
+    </h2>
+
+    <div class="packages-grid">
+
+        <div class="package-card">
+
+            <h3>Internet + TV Digitalb</h3>
+
+            <p class="fiber-price">
+                1900 Lekë
+            </p>
+
+            <p>Digitalb Fillestare</p>
+
+            <hr>
+
+            <p><strong>PAJTIMI MUJOR</strong></p>
+
+        </div>
+
+        <div class="package-card">
+
+            <h3>Internet + TV Digitalb</h3>
+
+            <p class="fiber-price">
+                2300 Lekë
+            </p>
+
+            <p>Digitalb Familjare</p>
+
+            <hr>
+
+            <p><strong>PAJTIMI MUJOR</strong></p>
+
+        </div>
+
+        <div class="package-card">
+
+            <h3>Internet + TV Tring</h3>
+
+            <p class="fiber-price">
+                1900 Lekë
+            </p>
+
+            <p>Tring Bazë</p>
+
+            <hr>
+
+            <p><strong>PAJTIMI MUJOR</strong></p>
+
+        </div>
+
+        <div class="package-card">
+
+            <h3>Internet + TV Tring</h3>
+
+            <p class="fiber-price">
+                2200 Lekë
+            </p>
+
+            <p>Tring e Plotë</p>
+
+            <hr>
+
+            <p><strong>PAJTIMI MUJOR</strong></p>
+
+        </div>
+
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="showInternetTvPage()"
+    >
+        Back
+    </button>
+
+</div>
+
+<!-- ONE SAFE PAGE -->
+
+<div class="guest-dashboard-page" id="oneSafePage">
+
+    <h2 class="guest-dashboard-title">
+        One Safe
+    </h2>
+
+<div class="safe-grid">
+
+    <div class="fiber-card">
+
+        <h3>🛡️ One Safe</h3>
+
+        <p>✔ Anti-Phishing & Malware Protection</p>
+
+        <p>✔ Parental Control</p>
+
+        <p>✔ Content Filtering</p>
+
+        <p>✔ Internet Time Limits</p>
+
+        <p>✔ Protection for All Devices</p>
+
+    </div>
+
+    <div class="fiber-card">
+
+        <h3>💰 Pricing</h3>
+
+        <p><strong>FREE WITH:</strong></p>
+
+        <p>Ultra Fiber 300 Mbps+</p>
+
+        <p>Mix & Max Packages</p>
+
+        <hr>
+
+        <p><strong>Other Ultra Fiber Plans</strong></p>
+
+        <p class="fiber-price">
+            200 Lek/month
+        </p>
+
+    </div>
+
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="showInternetTvPage()"
+    >
+        Back
+    </button>
+
+</div>
+
+<!-- ONE TV APP PAGE -->
+
+
+<!-- ONE TV APP PAGE -->
+
+<div class="guest-dashboard-page" id="tvAppPage">
+
+    <h2 class="guest-dashboard-title">
+        One TV App
+    </h2>
+
+    <div class="tv-toggle-row">
+        <button class="tv-toggle active" id="digitalbBtn" onclick="setTvPlatform('digitalb')">
+            Platforma Digitalb
+        </button>
+
+        <button class="tv-toggle" id="tringBtn" onclick="setTvPlatform('tring')">
+            Platforma Tring
+        </button>
+    </div>
+
+    <div class="tv-toggle-row">
+        <button class="tv-toggle active" id="contractBtn" onclick="setTvType('contract')">
+            Me Kontratë
+        </button>
+
+        <button class="tv-toggle" id="prepaidTvBtn" onclick="setTvType('prepaid')">
+            Me Parapagese
+        </button>
+    </div>
+
+    <div class="packages-grid" id="tvAppPlans"></div>
+
+    <button class="back-btn" onclick="showInternetTvPage()">
+        Back
+    </button>
+
+</div>
+<!-- ONE IPTV PAGE -->
+
+<div class="guest-dashboard-page" id="iptvPage">
+
+   <h2
+    class="guest-dashboard-title"
+    id="iptvTitle"
+>
+    Choose Your Internet Speed
+</h2>
+
+    <div class="iptv-speed-grid">
+
+        <button class="iptv-speed-card">
+            ⚡ 100/50MBPS (WiFi 6)
+        </button>
+
+        <button class="iptv-speed-card">
+            ⚡ 300/50MBPS (WiFi 6)
+        </button>
+
+        <button class="iptv-speed-card">
+            ⚡ 1GBPS/100MBPS (WiFi 6)
+        </button>
+
+        <button class="iptv-speed-card">
+            ⚡ 2.5 GBPS/500MBPS (WiFi 6)
+        </button>
+
+        <button class="iptv-speed-card">
+            ⚡ 10 GBPS/10 GBPS (WiFi 6)
+        </button>
+
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="showInternetTvPage()"
+    >
+        Back
+    </button>
+
+</div>
+<!-- PREPAID PAGE -->
+
+<div class="guest-dashboard-page" id="prepaidPage">
+
+    <h2 class="guest-dashboard-title">
+        Prepaid Packages
+    </h2>
+
+    <div class="packages-grid">
+
+        <div class="package-card">
+            <h3>ONE Lite</h3>
+            <p>50 MB</p>
+            <p>50 Minutes</p>
+            <p>50 SMS</p>
+<p class="package-price">600 Lek</p>        </div>
+
+        <div class="package-card">
+            <h3>ONE Go+</h3>
+            <p>3 GB</p>
+            <p>400 Minutes</p>
+            <p>400 SMS</p>
+<p class="package-price">1100 Lek</p>
+        </div>
+
+        <div class="package-card">
+            <h3>ONE Smart+</h3>
+            <p>15 GB</p>
+            <p>1000 SMS</p>
+            <p>4000 Minutes</p>
+<p class="package-price">1600 Lek</p>
+        </div>
+
+        <div class="package-card">
+            <h3>ONE Extra+</h3>
+            <p>25 GB</p>
+            <p>3000 SMS</p>
+            <p>4000 Minutes</p>
+<p class="package-price">1900 Lek</p>
+        </div>
+
+        <div class="package-card">
+            <h3>ONE Premium+</h3>
+            <p>35 GB</p>
+            <p>3000 SMS</p>
+            <p>4000 Minutes</p>
+<p class="package-price">2200 Lek</p>
+        </div>
+
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="showMobilePage()"
+    >
+        Back
+    </button>
+
+</div>
+<!-- PREPAID USER DASHBOARD -->
+
+<div class="dashboard-page" id="prepaidUserDashboard">
+
+    <div class="welcome-section">
+
+        <h2>Prepaid Customer</h2>
+
+        <p>Choose a self-service option</p>
+
+    </div>
+
+<div class="dashboard-grid prepaid-menu-grid">
+
+        <button class="dashboard-card" onclick="showPackageActivationPage()">
+    📦<br>Package Activation
+</button>
+
+<button class="dashboard-card" onclick="showTopUpPage()">
+    📲<br>Top-Up
+</button>
+
+<button class="dashboard-card" onclick="showTopUpSomeoneElsePage()">
+    👥<br>Top-Up for Someone Else
+</button>
+
+<button class="dashboard-card" onclick="showRoamingPage()">
+    🌍<br>Roaming Package
+</button>
+
+<button class="dashboard-card" onclick="showFiberCoveragePage()">
+    📍<br>Fiber Coverage
+</button>
+
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="goOtpPage()"
+    >
+        Back
+    </button>
+
+</div>
+
+
+<!-- POSTPAID USER DASHBOARD -->
+
+<div class="dashboard-page" id="postpaidUserDashboard">
+
+    <div class="welcome-section">
+
+        <h2>Postpaid Customer</h2>
+
+        <p>Choose a self-service option</p>
+
+    </div>
+
+<div class="two-by-two-grid">
+
+        <button
+    class="dashboard-card"
+    onclick="showBillPaymentPage()"
+>
+    💳<br>Bill Payment
+</button>
+
+        <button class="dashboard-card">
+            📲<br>Top-Up
+        </button>
+
+        <button class="dashboard-card">
+            👥<br>Top-Up for Someone Else
+        </button>
+
+        <button
+    class="dashboard-card"
+    onclick="showFiberCoveragePage()"
+>
+    📍<br>Fiber Coverage
+</button>
+
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="goOtpPage()"
+    >
+        Back
+    </button>
+
+</div>
+<!-- BILL PAYMENT PAGE -->
+
+<div class="dashboard-page" id="billPaymentPage">
+
+    <div class="auth-card">
+
+        <h2>Outstanding Bill</h2>
+
+        <p><strong>Customer:</strong> Eljon Enesi</p>
+
+        <p><strong>Phone Number:</strong> +355687654321</p>
+
+        <p><strong>Amount Due:</strong> 2,500 ALL</p>
+
+        <p><strong>Due Date:</strong> 30/06/2026</p>
+
+        <button
+            class="primary-btn"
+            onclick="showBillPaymentMethodPage()"
+        >
+            Proceed to Payment
+        </button>
+
+        <button
+            class="back-btn"
+            onclick="showDashboard()"
+        >
+            Back
+        </button>
+
+    </div>
+
+</div>
+
+<!-- BILL PAYMENT METHOD PAGE -->
+
+<div class="dashboard-page" id="billPaymentMethodPage">
+
+    <div class="welcome-section">
+
+        <h2>Payment Method</h2>
+
+        <p>Select how you want to pay</p>
+
+    </div>
+
+    <div class="two-by-two-grid">
+
+        <button
+            class="dashboard-card"
+            onclick="startBillPayment('card')"
+        >
+            💳<br>Card
+        </button>
+
+        <button
+            class="dashboard-card"
+            onclick="startBillPayment('cash')"
+        >
+            💵<br>Cash
+        </button>
+
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="showBillPaymentPage()"
+    >
+        Back
+    </button>
+
+</div>
+
+<!-- FULL BILL PAGE -->
+
+<div class="dashboard-page" id="fullBillPage">
+
+    <div class="bill-details-card">
+
+        <h2 class="bill-title">
+            Invoice Details
+        </h2>
+
+        <div class="bill-customer-section">
+
+            <div class="bill-row">
+                <span>Customer</span>
+                <strong>Eljon Enesi</strong>
+            </div>
+
+            <div class="bill-row">
+                <span>Mobile Number</span>
+                <strong>+355 68 765 4321</strong>
+            </div>
+
+            <div class="bill-row">
+                <span>Invoice Number</span>
+                <strong>2487093/2026</strong>
+            </div>
+
+            <div class="bill-row">
+                <span>Due Date</span>
+                <strong>30/06/2026</strong>
+            </div>
+
+        </div>
+
+        <div class="bill-divider"></div>
+
+        <div class="bill-row">
+            <span>Monthly Subscription</span>
+            <strong>2,000 ALL</strong>
+        </div>
+
+        <div class="bill-row">
+            <span>Additional Usage</span>
+            <strong>500 ALL</strong>
+        </div>
+
+        <div class="bill-divider"></div>
+
+        <div class="bill-total">
+
+            <span>Total Due</span>
+
+            <strong>2,500 ALL</strong>
+
+        </div>
+
+        <button
+            class="bill-finish-btn"
+            onclick="showDashboard()"
+        >
+            Finish
+        </button>
+
+    </div>
+
+</div>
+</div>
+<!-- FIBER COVERAGE PAGE -->
+
+<div class="dashboard-page" id="fiberCoveragePage">
+
+    <div class="welcome-section">
+        <h2>Fiber Coverage</h2>
+        <p>Click on the Tirana map to place your location pin</p>
+    </div>
+
+    <div class="coverage-layout">
+
+    <div id="fiberMap"></div>
+
+    <div id="coverageResult" class="coverage-result">
+
+        <h3>Select your location</h3>
+
+        <p>
+            Click anywhere on the map.
+        </p>
+
+    </div>
+
+</div>
+
+    <button class="back-btn" onclick="showDashboard()">
+        Back
+    </button>
+
+</div>
+<!-- PACKAGE ACTIVATION PAGE -->
+
+
+<div class="dashboard-page" id="packageActivationPage">
+
+    <div class="welcome-section">
+        <h2>Package Activation</h2>
+        <p>Choose a prepaid package to activate</p>
+    </div>
+
+    <div class="packages-grid">
+
+        <div class="activation-package-card" onclick="selectPackageCard(this, 'ONE Lite', '600 Lek')">
+            <h3>ONE Lite</h3>
+            <p>50 MB</p>
+            <p>50 Minutes</p>
+            <p>50 SMS</p>
+            <p><strong>600 Lek</strong></p>
+        </div>
+
+        <div class="activation-package-card" onclick="selectPackageCard(this, 'ONE Go+', '1100 Lek')">
+            <h3>ONE Go+</h3>
+            <p>3 GB</p>
+            <p>400 Minutes</p>
+            <p>400 SMS</p>
+            <p><strong>1100 Lek</strong></p>
+        </div>
+
+        <div class="activation-package-card" onclick="selectPackageCard(this, 'ONE Smart+', '1600 Lek')">
+            <h3>ONE Smart+</h3>
+            <p>15 GB</p>
+            <p>1000 SMS</p>
+            <p>4000 Minutes</p>
+            <p><strong>1600 Lek</strong></p>
+        </div>
+
+        <div class="activation-package-card" onclick="selectPackageCard(this, 'ONE Extra+', '1900 Lek')">
+            <h3>ONE Extra+</h3>
+            <p>25 GB</p>
+            <p>3000 SMS</p>
+            <p>4000 Minutes</p>
+            <p><strong>1900 Lek</strong></p>
+        </div>
+
+        <div class="activation-package-card" onclick="selectPackageCard(this, 'ONE Premium+', '2200 Lek')">
+            <h3>ONE Premium+</h3>
+            <p>35 GB</p>
+            <p>3000 SMS</p>
+            <p>4000 Minutes</p>
+            <p><strong>2200 Lek</strong></p>
+        </div>
+
+    </div>
+
+    <button
+        id="bigActivatePackageBtn"
+        class="big-activate-btn"
+        onclick="activateSelectedPackage()"
+    >
+        Activate 
+    </button>
+
+    <button class="back-btn" onclick="showSimTypePage()">
+    Back
+</button>
+
+</div>
+
+
+<!-- PAYMENT METHOD PAGE -->
+
+<div class="dashboard-page" id="paymentMethodPage">
+
+    <div class="welcome-section">
+        <h2>Payment Method</h2>
+        <p id="selectedPackageText">Choose how you want to pay</p>
+    </div>
+
+    <div class="two-by-two-grid">
+
+        <button class="dashboard-card" onclick="selectPaymentMethod('card')">
+            💳<br>Card
+        </button>
+
+        <button class="dashboard-card" onclick="selectPaymentMethod('cash')">
+            💵<br>Cash
+        </button>
+
+    </div>
+
+    <button class="back-btn" onclick="paymentMethodBack()">
+    Back
+</button>
+
+</div>
+
+
+<!-- PAYMENT INSTRUCTION PAGE -->
+
+<div class="dashboard-page" id="paymentInstructionPage">
+
+    <div class="auth-card">
+
+        <h2 id="paymentInstructionTitle">Payment</h2>
+
+        <p id="paymentInstructionText">
+            Please follow the payment instructions.
+        </p>
+
+        <button class="primary-btn" onclick="startPaymentLoading()">
+            Continue
+        </button>
+
+        <button class="back-btn" onclick="showPaymentMethodPage()">
+            Back
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PAYMENT LOADING PAGE -->
+
+<div class="dashboard-page" id="paymentLoadingPage">
+
+    <div class="auth-card">
+
+        <h2>Processing Payment</h2>
+
+        <p>Please wait while your payment is being processed...</p>
+
+        <div class="loader"></div>
+
+    </div>
+
+</div>
+
+
+<!-- PAYMENT SUCCESS PAGE -->
+
+<div class="dashboard-page" id="paymentSuccessPage">
+
+    <div class="auth-card">
+
+        <h2>✅ Payment Successful</h2>
+
+        <p id="paymentSuccessText">
+            Your package has been activated successfully.
+        </p>
+
+        <button class="primary-btn" onclick="showDashboard()">
+            Finish
+        </button>
+
+    </div>
+
+</div>
+<!-- TOP UP PAGE -->
+
+<div class="dashboard-page" id="topUpPage">
+
+    <div class="topup-panel">
+
+        <div class="topup-header">
+
+            <h2>Top-Up</h2>
+
+            <button
+                class="topup-close"
+                onclick="showDashboard()"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div class="topup-section">
+
+            <h3>Top-up recipient</h3>
+
+            <div class="recipient-row">
+
+    <button class="recipient-card active">
+        <span>My Number</span>
+        <small>+355 68 123 4567</small>
+    </button>
+
+</div>
+
+        </div>
+
+        <div class="topup-section">
+
+            <h3>Select the amount</h3>
+
+            <div class="amount-row">
+
+    <button class="amount-btn active"
+            onclick="selectTopUpAmount(500)">
+        500 ALL
+    </button>
+
+    <button class="amount-btn"
+            onclick="selectTopUpAmount(1000)">
+        1000 ALL
+    </button>
+
+    <button class="amount-btn"
+            onclick="selectTopUpAmount(1500)">
+        1500 ALL
+    </button>
+    <button class="amount-btn"
+            onclick="selectTopUpAmount(1500)">
+        2000 ALL
+    </button>
+
+</div>
+
+<div class="custom-amount-container">
+
+    <input
+        type="number"
+        id="customTopUpAmount"
+        placeholder="Enter custom amount"
+        class="custom-amount-input"
+    >
+
+</div>
+        </div>
+
+        <div class="topup-section">
+
+            <h3>Payment method</h3>
+
+            <div class="payment-row">
+
+                <button
+                    class="payment-method-card active"
+                    onclick="selectTopUpPayment('card')"
+                >
+                    <span>Credit card</span>
+                    <small>Details are not saved</small>
+                    <b>💳</b>
+                </button>
+
+                <button
+                    class="payment-method-card"
+                    onclick="selectTopUpPayment('cash')"
+                >
+                    <span>Cash</span>
+                    <small>Insert cash in kiosk</small>
+                    <b>💵</b>
+                </button>
+
+            </div>
+
+        </div>
+
+        <button
+            class="topup-next-btn"
+            onclick="continueTopUpPayment()"
+        >
+            Next
+        </button>
+
+    </div>
+
+</div>
+<div id="privacyModal" class="modal-overlay">
+
+    <div class="modal-box">
+
+        <h3>Privacy Policy Required</h3>
+
+        <p>
+            Please accept the Privacy Policy to continue.
+        </p>
+
+        <button onclick="closePrivacyModal()">
+            OK
+        </button>
+
+    </div>
+
+</div>
+
+<div id="privacyModalInfo" class="modal-overlay">
+
+    <div class="modal-box">
+
+        <h3 id="privacyModalTitle">
+            Privacy Policy
+        </h3>
+
+        <div
+            id="privacyModalContent"
+            class="terms-content"
+        ></div>
+
+        <button onclick="closePrivacyModalInfo()">
+            OK
+        </button>
+
+    </div>
+
+</div>
+
+<div id="termsModal" class="modal-overlay">
+
+    <div class="modal-box">
+
+        <h3 id="termsModalTitle">
+            Terms & Conditions
+        </h3>
+
+        <div
+            id="termsModalContent"
+            class="terms-content"
+        ></div>
+
+        <button onclick="closeTermsModal()">
+            OK
+        </button>
+
+    </div>
+
+</div>
+<div id="registerConsentModal" class="modal-overlay">
+
+    <div class="modal-box" style="width:700px; max-width:90%;">
+
+        <h3>eSIM Registration Consent</h3>
+
+        <div class="terms-content">
+
+            <p>
+                Before continuing with eSIM registration,
+                you must confirm that:
+            </p>
+
+            <ul>
+                <li>You are the rightful owner of the identity document used for registration.</li>
+
+                <li>You agree that One Albania may process your personal data for identification and service activation purposes.</li>
+
+                <li>You understand that registration is performed according to Albanian telecommunications regulations.</li>
+
+                <li>You agree to the customer protection requirements established by AKEP.</li>
+            </ul>
+
+            <br>
+
+            <a
+                href="https://apigw-prd.one.al/oneal/v1/uploads/Rregullore_AKEP_per_mbrojtjen_e_Konsumatorit_0_460b1cb588.pdf"
+                target="_blank"
+                style="color:#FDB913;font-weight:700;"
+            >
+                Read Full Regulation PDF
+            </a>
+
+        </div>
+
+        <div class="consent-box">
+
+            <input
+                type="checkbox"
+                id="registerConsentCheckbox"
+            >
+
+            <label for="registerConsentCheckbox">
+                I have read and accept the registration consent.
+            </label>
+
+        </div>
+
+        <button onclick="acceptRegisterConsent()">
+            Continue
+        </button>
+
+    </div>
+
+</div>
+<!-- TOP UP FOR SOMEONE ELSE PAGE -->
+
+<div class="dashboard-page" id="topUpSomeoneElsePage">
+
+    <div class="topup-panel">
+
+        <div class="topup-header">
+
+            <h2>Top-Up for Someone Else</h2>
+
+            <button
+    class="topup-close"
+    onclick="showPrepaidDashboard()"
+>
+    ×
+</button>
+
+        </div>
+
+        <div class="topup-section">
+
+            <h3>Recipient Phone Number</h3>
+
+            <input
+                type="text"
+                id="otherPhoneNumber"
+                placeholder="+355 68 123 4567"
+                class="custom-amount-input"
+            >
+
+        </div>
+
+        <div class="topup-section">
+
+            <h3>Select the amount</h3>
+
+            <div class="amount-row">
+
+                <button
+                    class="amount-btn active"
+                    onclick="selectOtherTopUpAmount(500)"
+                >
+                    500 ALL
+                </button>
+
+                <button
+                    class="amount-btn"
+                    onclick="selectOtherTopUpAmount(1000)"
+                >
+                    1000 ALL
+                </button>
+
+                <button
+                    class="amount-btn"
+                    onclick="selectOtherTopUpAmount(1500)"
+                >
+                    1500 ALL
+                </button>
+
+                <button
+                    class="amount-btn"
+                    onclick="selectOtherTopUpAmount(2000)"
+                >
+                    2000 ALL
+                </button>
+
+            </div>
+
+            <div class="custom-amount-container">
+
+                <input
+                    type="number"
+                    id="otherCustomAmount"
+                    placeholder="Enter custom amount"
+                    class="custom-amount-input"
+                >
+
+            </div>
+
+        </div>
+
+        <div class="topup-section">
+
+            <h3>Payment method</h3>
+
+            <div class="payment-row">
+
+                <button
+                    class="payment-method-card active"
+                    onclick="selectOtherTopUpPayment('card')"
+                >
+                    <span>💳 Credit Card</span>
+                    <small>Details are not saved</small>
+                </button>
+
+                <button
+                    class="payment-method-card"
+                    onclick="selectOtherTopUpPayment('cash')"
+                >
+                    <span>💵 Cash</span>
+                    <small>Insert cash into kiosk</small>
+                </button>
+
+            </div>
+
+        </div>
+
+        <button
+            class="topup-next-btn"
+            onclick="continueOtherTopUpPayment()"
+        >
+            Continue
+        </button>
+
+        <button
+    class="back-btn"
+    onclick="showPrepaidDashboard()"
+>
+    Back
+</button>
+
+    </div>
+
+</div>
+<!-- ROAMING PAGE -->
+
+<div class="dashboard-page" id="roamingPage">
+
+    <h1>ONE ROAMING</h1>
+
+    <p class="subtitle">
+        Travel worry-free with One Roaming.
+    </p>
+
+    <p class="subtitle">
+        Select your destination country to view available roaming packages.
+    </p>
+
+    <div class="roaming-selects">
+
+        <div class="roaming-fixed">
+            Prepaid
+        </div>
+
+        <select id="countrySelect" class="roaming-country">
+
+            <option value="">Select Country</option>
+
+            <option>Italy</option>
+            <option>Greece</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>Spain</option>
+            <option>United Kingdom</option>
+            <option>Switzerland</option>
+            <option>Austria</option>
+            <option>Belgium</option>
+            <option>Netherlands</option>
+            <option>Croatia</option>
+            <option>Turkey</option>
+            <option>Portugal</option>
+            <option>Sweden</option>
+            <option>Norway</option>
+            <option>Denmark</option>
+            <option>Poland</option>
+            <option>Czech Republic</option>
+            <option>Hungary</option>
+            <option>Romania</option>
+
+        </select>
+
+    </div>
+
+    <button
+        class="roaming-btn"
+        onclick="continueRoaming()"
+    >
+        Continue
+    </button>
+
+    <button
+        class="back-btn"
+        onclick="showPrepaidDashboard()"
+    >
+        Back
+    </button>
+
+</div>
+<!-- ROAMING RESULTS PAGE -->
+
+<div class="dashboard-page" id="roamingResultsPage">
+
+    <div class="roaming-results-container">
+
+        <table class="roaming-table">
+
+            <thead>
+                <tr>
+                    <th>Operator</th>
+                    <th>Network Name</th>
+                    <th>Voice/SMS</th>
+                    <th>Internet</th>
+                    <th>Mix Package</th>
+                    <th>Internet Package</th>
+                    <th>Zone</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>O2 Germany</td>
+                    <td>o2-de</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>Zone 1</td>
+                </tr>
+
+                <tr>
+                    <td>T-Mobile Germany</td>
+                    <td>Telekom DE</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>Zone 1</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <h2 class="mix-title">
+            MIX PACKAGES
+        </h2>
+
+       
+
+    <div class="mix-packages">
+
+    <div
+        class="mix-card"
+        onclick="selectRoamingPackage(this, 'Daily Roaming', '400 ALL')"
+    >
+        <h3>Daily Roaming</h3>
+
+        <p>200 MB</p>
+        <p>20 Minutes to One</p>
+        <p>5 Minutes to All Networks</p>
+        <p>10 Incoming Minutes</p>
+        <p>10 SMS</p>
+
+        <h4>400 ALL</h4>
+    </div>
+
+    <div
+        class="mix-card"
+        onclick="selectRoamingPackage(this, '4-Day Roaming', '800 ALL')"
+    >
+        <h3>4-Day Roaming</h3>
+
+        <p>500 MB</p>
+        <p>50 Minutes to One</p>
+        <p>10 Minutes to All Networks</p>
+        <p>50 Incoming Minutes</p>
+        <p>50 SMS</p>
+
+        <h4>800 ALL</h4>
+    </div>
+
+    <div
+        class="mix-card"
+        onclick="selectRoamingPackage(this, '10-Day Roaming', '1600 ALL')"
+    >
+        <h3>10-Day Roaming</h3>
+
+        <p>6 GB</p>
+        <p>200 Minutes to One</p>
+        <p>10 Minutes to All Networks</p>
+        <p>50 Incoming Minutes</p>
+        <p>200 SMS</p>
+
+        <h4>1600 ALL</h4>
+    </div>
+
+</div>
+
+<button
+    class="big-activate-btn"
+    onclick="activateSelectedRoamingPackage()"
+>
+    ACTIVATE
+</button>
+
+    <button
+        class="back-btn"
+        onclick="showRoamingPage()"
+    >
+        Back
+    </button>
+
+</div>
+
+    <script src="https://unpkg.com/leaflet-omnivore/leaflet-omnivore.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
