@@ -64,55 +64,63 @@ src="https://unpkg.com/leaflet/dist/leaflet.js">
         <img src="https://flagcdn.com/w40/gb.png" alt="English" class="flag" onclick="setLanguage('en')">
     </div>
 
-    <!-- FIRST PAGE -->
-   <div class="container" id="homePage" style="display:none;">
+<!-- FIRST PAGE -->
 
-        <img
-            src="https://www.gsma.com/get-involved/gsma-membership/wp-content/uploads/2014/06/one_logo-002.png"
-            alt="One Albania Logo"
-            class="logo"
-        >
+<div class="container" id="homePage" style="display:none;">
 
-        <h1 id="mainTitle">ONE E-KIOSK</h1>
+    <img
+        src="https://www.gsma.com/get-involved/gsma-membership/wp-content/uploads/2014/06/one_logo-002.png"
+        alt="One Albania Logo"
+        class="logo"
+    >
 
-        <p class="subtitle" id="subtitle">
-            Fast. Simple. Efficient.
-        </p>
+    <h1 id="mainTitle">ONE E-KIOSK</h1>
 
-        <button class="start-btn" onclick="showPhonePage()" id="startBtn">
-            Start
-        </button>
-        <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<div class="home-social">
+    <p class="subtitle" id="subtitle">
+        Fast. Simple. Efficient.
+    </p>
 
-    <p>Follow One Albania</p>
+    <button
+        class="start-btn"
+        onclick="showPhonePage()"
+        id="startBtn"
+    >
+        Start
+    </button>
 
-    <div class="home-social-icons">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
 
-        <a href="#">
-            <i class="fab fa-facebook-f"></i>
-        </a>
+    <div class="home-social">
 
-        <a href="#">
-            <i class="fab fa-instagram"></i>
-        </a>
+        <p>Follow One Albania</p>
 
-        <a href="#">
-            <i class="fab fa-linkedin-in"></i>
-        </a>
+        <div class="home-social-icons">
 
-        <a href="#">
-            <i class="fab fa-youtube"></i>
-        </a>
+            <a href="#">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="#">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+
+            <a href="#">
+                <i class="fab fa-youtube"></i>
+            </a>
+
+        </div>
 
     </div>
 
 </div>
 
-</div>
-
-    </div>
     <!-- PHONE NUMBER PAGE -->
     <div class="auth-page" id="phonePage">
 
@@ -144,34 +152,34 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     <label for="consentCheckbox">
 
-    <span id="consentText">
-        I have read and agree to the
-    </span>
+        <span id="consentText">
+            I have read and agree to the
+        </span>
 
-    <a
-        href="#"
-        id="termsText"
-        onclick="openTermsModal()"
-    >
-        Terms & Conditions
-    </a>
+        <a
+            href="#"
+            id="termsText"
+            onclick="openTermsModal()"
+        >
+            Terms & Conditions
+        </a>
 
-    <span id="andText">
-        and
-    </span>
+        <span id="andText">
+            and
+        </span>
 
-    <a
-        href="#"
-        id="privacyText"
-        onclick="openPrivacyPolicyModal()"
-    >
-        Privacy Policy
-    </a>
+        <a
+            href="#"
+            id="privacyText"
+            onclick="openPrivacyPolicyModal()"
+        >
+            Privacy Policy
+        </a>
 
-</label>
     </label>
 
 </div>
+
           <button class="primary-btn" onclick="showOtpPage()" id="sendOtpBtn">
     Send OTP
 </button>
@@ -285,9 +293,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <button
     class="dashboard-card"
-    onclick="showTopUpPage()"
+    onclick="showPostpaidAddOnPage()"
 >
-    📲<br>Top-Up
+    ➕<br>Add-On
 </button>
 
 <button class="dashboard-card" id="buyPackageCard">
@@ -655,7 +663,304 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     </div>
 
 </div>
+<div id="contractPage" class="dashboard-page">
 
+    <div class="auth-card contract-card">
+
+        <h2>Service Agreement</h2>
+
+        <p>
+            Please review the full registration contract and sign below.
+        </p>
+
+        <div
+            id="contractContainer"
+            class="contract-scroll"
+            onscroll="enableSignatureSection()"
+        >
+
+            <div class="contract-document">
+
+                <div class="contract-header">
+                    <img
+                        src="https://www.gsma.com/get-involved/gsma-membership/wp-content/uploads/2014/06/one_logo-002.png"
+                        alt="One Albania"
+                    >
+
+                    <div>
+                        <h3>One Albania SHA</h3>
+                        <p>
+                            Adresa: Rruga “Muhedin Llagami”, Kompleksi “Square 21”, Tiranë, Shqipëri
+                            <br>
+                            Phone: +355 42275232 | E-mail: contactus@one.al
+                            <br>
+                            NIPT: J61814094W
+                        </p>
+                    </div>
+                </div>
+
+                <h2>
+                    FORMULAR REGJISTRIMI PËR PËRDORUESIT E SHËRBIMEVE TË KOMUNIKIMEVE ELEKTRONIKE TË LËVIZSHME
+                </h2>
+
+                <div class="contract-summary">
+
+                    <div>
+                        <span>Customer</span>
+                        <strong>Ardit Hoxha</strong>
+                    </div>
+
+                    <div>
+                        <span>ID Number</span>
+                        <strong>J12345678L</strong>
+                    </div>
+
+                    <div>
+                        <span>Personal Number</span>
+                        <strong>L00101001A</strong>
+                    </div>
+
+                    <div>
+                        <span>SIM Type</span>
+                        <strong id="contractSimType">Physical SIM</strong>
+                    </div>
+
+                    <div>
+                        <span>Date of Birth</span>
+                        <strong>12/04/1998</strong>
+                    </div>
+
+                    <div>
+                        <span>Address</span>
+                        <strong>Rr. Teuta, Durrës, Albania</strong>
+                    </div>
+
+                    <div>
+                        <span>Document</span>
+                        <strong>Karta e Identitetit ID</strong>
+                    </div>
+
+                    <div>
+                        <span>Registration By</span>
+                        <strong>Përdoruesi</strong>
+                    </div>
+
+                </div>
+
+                <h3>Regjistrimi i Përdoruesit Pranë Operatorit Bëhet Nga</h3>
+
+                <p>
+                    Regjistrimi bëhet nga përdoruesi, personi i autorizuar ose kujdestari ligjor.
+                    Dokumenti i identifikimit i përdorur për regjistrim depozitohet sipas kërkesave të operatorit.
+                </p>
+
+                <h3>Dokumenti i Përdorur Për Regjistrim</h3>
+
+                <p>
+                    Për persona mbi 18 vjeç përdoret Karta e Identitetit ID.
+                    Për persona nën 18 vjeç dhe të huaj mund të përdoret pasaporta ose letërnjoftimi ID.
+                    Për persona të autorizuar ose kujdestar ligjor kërkohet autorizim ose prokurë.
+                </p>
+
+                <h3>Identifikimi i Përdoruesit në Rrjetin e Komunikimeve Elektronike</h3>
+
+                <p>
+                    Numri i telefonit, numri serial i kartës SIM dhe tipi i kartës SIM regjistrohen në sistemin e operatorit.
+                    Shërbimi mund të jetë Telefoni/Internet ose Internet.
+                </p>
+
+                <h3>Shënim Ligjor</h3>
+
+                <p>
+                    Regjistrimi i të dhënave sipas këtij formulari është detyrim i Ligjit nr. 9918,
+                    datë 19.05.2008, i ndryshuar. Në rastet e parashikuara me ligj,
+                    të dhënat e këtij formulari dhe skedarët e komunikimeve mund t’u vihen në dispozicion autoriteteve përkatëse.
+                </p>
+
+                <p>
+                    Deklarimi i të dhënave të rreme apo dokumenteve të falsifikuara për regjistrim përbën krim
+                    të falsifikimit dhe/ose përdorimit të dokumenteve të falsifikuara.
+                </p>
+
+                <h3>Deklarim i Përdoruesit</h3>
+
+                <p>
+                    Deklaroj se qëllimi i blerjes së shërbimit është për përdorimin tim personal/biznes
+                    apo të personit të deklaruar dhe jo për rishitje apo përdorim për qëllime fitimi
+                    apo në kundërshtim me ligjin.
+                </p>
+
+                <p>
+                    Deklaroj që të dhënat e mësipërme janë të vërteta.
+                    Mora dijeni të plotë për shënimet dhe pranoj të gjitha kushtet e mësipërme.
+                </p>
+
+                <h3>Deklarata e Pajtimtarit</h3>
+
+                <p>
+                    Kuptoj se të dhënat e mia personale të deklaruara në këtë formular dhe/ose në çdo dokument tjetër
+                    të nënshkruar pranë One Albania SHA janë të dhëna të detyrueshme.
+                    Ato do të përpunohen nga One Albania SHA me standardet më të larta të sigurisë dhe në përputhje
+                    me parashikimet ligjore në fuqi.
+                </p>
+
+                <p>
+                    Të dhënat përpunohen për qëllimin e ofrimit të produkteve dhe shërbimeve të telekomunikacionit
+                    dhe/ose për përmbushjen e detyrimeve ligjore që One Albania SHA mund të ketë.
+                </p>
+
+                <p>
+                    Kuptoj se mbetet detyrimi im t’i përditësoj këto të dhëna sa herë që ndryshojnë.
+                    Gjithashtu, kam të drejtë të kërkoj informacion për qëllimin e përpunimit,
+                    kategoritë e të dhënave të përpunuara dhe marrësit e këtyre të dhënave.
+                </p>
+
+                <h3>Përpunimi i të Dhënave Personale</h3>
+
+                <p>
+                    Deklaroj se informacioni i dhënë nga ana ime në këtë aplikim është i vërtetë dhe i saktë.
+                </p>
+
+                <p>
+                    Unë shpreh pëlqimin tim që One Albania SHA të mbledhë dhe përpunojë të dhënat e mia personale
+                    të deklaruara në këtë formular vetëm për qëllimin e ofrimit të shërbimit për të cilin po aplikoj.
+                </p>
+
+                <p>
+                    Të dhënat personale do të trajtohen me nivel sigurie të standardeve më të larta,
+                    në përputhje me Ligjin Nr. 9887 datë 10.03.2008 “Për Mbrojtjen e të Dhënave Personale”.
+                </p>
+
+                <p>
+                    One Albania SHA mund të transferojë këto të dhëna tek palët kontraktore në cilësinë e përpunuesit,
+                    në kuadër të hapjes, ndryshimit, mirëmbajtjes dhe administrimit të regjistrimit.
+                </p>
+
+                <p>
+                    Autorizoj One Albania SHA që të ruajë të dhënat e mia personale deri në 10 vite pas mbylljes së marrëdhënies
+                    së biznesit. Për pyetje lidhur me përpunimin e të dhënave personale mund të kontaktoj:
+                    <strong>dataprivacy@one.al</strong>.
+                </p>
+
+                <h3>Të Drejtat e Pajtimtarit</h3>
+
+                <p>
+                    Pajtimtari ka të drejtë të kërkojë akses, bllokim, korrigjim ose fshirje të të dhënave personale
+                    që përpunohen nga One Albania SHA. Pajtimtari ka gjithashtu të drejtë të ankohet pranë Komisionerit
+                    për të Drejtën e Informimit dhe Mbrojtjen e të Dhënave Personale.
+                </p>
+
+                <h3>Përpunimi i të Dhënave Personale për Qëllime Marketingu</h3>
+
+                <p>
+                    Pajtimtari mund të japë miratimin që One Albania SHA të përdorë të dhënat personale për marketing direkt,
+                    informim për fushata, oferta promocionale, produkte dhe shërbime të reja përmes SMS, telefonatës,
+                    postës elektronike ose postës zyrtare.
+                </p>
+
+                <p>
+                    Pajtimtari ruan të drejtën që në çdo kohë të kërkojë revokimin e këtij miratimi.
+                </p>
+
+                <h3>Electronic Signature</h3>
+
+                <p>
+                    Duke nënshkruar elektronikisht këtë formular, pajtimtari konfirmon se ka lexuar,
+                    kuptuar dhe pranuar kushtet e regjistrimit, deklaratat dhe kushtet e përpunimit të të dhënave personale.
+                </p>
+
+                <div class="signature-area">
+
+                    <h3>Customer Signature</h3>
+
+                    <p class="signature-help">
+                        Sign inside the box using the digital pen or touchscreen.
+                    </p>
+
+                    <canvas
+                        id="signaturePad"
+                        width="900"
+                        height="230"
+                    ></canvas>
+
+                    <button
+                        class="clear-sign-btn"
+                        onclick="clearSignature()"
+                    >
+                        Clear Signature
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button
+            id="continueContractBtn"
+            class="primary-btn"
+            disabled
+            onclick="showNewNumberPayment()"
+        >
+            Continue
+        </button>
+
+        <button
+            class="back-btn"
+            onclick="showSimTypePage()"
+        >
+            Back
+        </button>
+
+    </div>
+
+</div>
+
+<div
+    id="contractQrPage"
+    class="auth-page"
+>
+
+    <div class="auth-card">
+
+        <h2>✅ Payment Successful</h2>
+
+        <p>
+            500 Lek payment completed.<br>
+            New number registration was successful.<br>
+            Your signed contract copy is ready.
+        </p>
+
+        <div class="contract-download-card">
+
+            <h3>📄 Signed Contract Copy</h3>
+
+            <p>
+                Scan this QR code to download the signed contract on your phone.
+            </p>
+
+            <img
+                id="contractQrImage"
+                src=""
+                alt="Contract QR"
+            >
+
+            <div class="contract-id">
+                Contract ID: ONE-REG-2026-004821
+            </div>
+
+        </div>
+
+        <button
+    class="primary-btn"
+    onclick="finishRegistration()"
+>
+    Continue
+</button>
+
+    </div>
+
+</div>
 
 <!-- MOBILE PAGE -->
 
@@ -998,7 +1303,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <div class="guest-dashboard-page" id="homeNetPage">
 
-```
 <h2 class="guest-dashboard-title">
     Planet HomeNet
 </h2>
@@ -1065,7 +1369,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             1630 Lek/month
         </p>
 
-    </div>
+</div>
+
 
 </div>
 
@@ -1075,7 +1380,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 >
     Back
 </button>
-```
+
 
 </div>
 
@@ -1423,29 +1728,35 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <div class="two-by-two-grid">
 
-        <button
+    <button
+        class="dashboard-card"
+        onclick="showBillPaymentPage()"
+    >
+        💳<br>Bill Payment
+    </button>
+
+    <button
     class="dashboard-card"
-    onclick="showBillPaymentPage()"
+    onclick="showPostpaidAddOnPage()"
 >
-    💳<br>Bill Payment
+    ➕<br>Add-On
 </button>
 
-        <button class="dashboard-card">
-            📲<br>Top-Up
-        </button>
+    <button
+        class="dashboard-card"
+        onclick="showTopUpSomeoneElsePage()"
+    >
+        👥<br>Top-Up for Someone Else
+    </button>
 
-        <button class="dashboard-card">
-            👥<br>Top-Up for Someone Else
-        </button>
+    <button
+        class="dashboard-card"
+        onclick="showFiberCoveragePage()"
+    >
+        📍<br>Fiber Coverage
+    </button>
 
-        <button
-    class="dashboard-card"
-    onclick="showFiberCoveragePage()"
->
-    📍<br>Fiber Coverage
-</button>
-
-    </div>
+</div>
 
     <button
         class="back-btn"
@@ -1455,32 +1766,199 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     </button>
 
 </div>
+
+
+<!-- POSTPAID ADD-ON PAGE -->
+
+<div class="dashboard-page" id="postpaidAddOnPage">
+
+    <div class="welcome-section">
+
+        <h2>Postpaid Add-Ons</h2>
+
+        <p>Activate extra services now and pay with your monthly bill</p>
+
+    </div>
+
+    <div class="addon-grid">
+
+        <div
+            class="addon-card"
+            onclick="selectPostpaidAddOn(this, 'Roaming Ditore Mix', '400 ALL')"
+        >
+            <div class="addon-label">Roaming</div>
+            <h3>Roaming Ditore Mix</h3>
+            <p>200 MB Internet</p>
+            <p>20 minutes to One</p>
+            <p>10 SMS</p>
+            <strong>400 ALL</strong>
+        </div>
+
+        <div
+            class="addon-card"
+            onclick="selectPostpaidAddOn(this, 'Roaming 4 Ditore Mix', '800 ALL')"
+        >
+            <div class="addon-label">Roaming</div>
+            <h3>Roaming 4 Ditore Mix</h3>
+            <p>500 MB Internet</p>
+            <p>50 minutes to One</p>
+            <p>4 days validity</p>
+            <strong>800 ALL</strong>
+        </div>
+
+        <div
+            class="addon-card"
+            onclick="selectPostpaidAddOn(this, 'Roaming 10 Ditore Mix', '1600 ALL')"
+        >
+            <div class="addon-label">Roaming</div>
+            <h3>Roaming 10 Ditore Mix</h3>
+            <p>6 GB Internet</p>
+            <p>200 SMS</p>
+            <p>10 days validity</p>
+            <strong>1600 ALL</strong>
+        </div>
+
+        <div
+            class="addon-card"
+            onclick="selectPostpaidAddOn(this, 'Internet Xtreme M', '500 ALL')"
+        >
+            <div class="addon-label">Extra Internet</div>
+            <h3>Internet Xtreme M</h3>
+            <p>3 GB Internet</p>
+            <p>30 days validity</p>
+            <p>Added to monthly bill</p>
+            <strong>500 ALL</strong>
+        </div>
+
+        <div
+            class="addon-card"
+            onclick="selectPostpaidAddOn(this, 'Internet Xtreme L', '600 ALL')"
+        >
+            <div class="addon-label">Extra Internet</div>
+            <h3>Internet Xtreme L</h3>
+            <p>6 GB Internet</p>
+            <p>30 days validity</p>
+            <p>Added to monthly bill</p>
+            <strong>600 ALL</strong>
+        </div>
+
+        <div
+            class="addon-card"
+            onclick="selectPostpaidAddOn(this, 'International M+', '300 ALL')"
+        >
+            <div class="addon-label">International</div>
+            <h3>International M+</h3>
+            <p>20 international minutes</p>
+            <p>30 days validity</p>
+            <p>Added to monthly bill</p>
+            <strong>300 ALL</strong>
+        </div>
+
+    </div>
+
+    <button
+        class="big-activate-btn"
+        onclick="activatePostpaidAddOn()"
+    >
+        Activate Add-On
+    </button>
+
+    <button
+        class="back-btn"
+        onclick="showPostpaidDashboard()"
+    >
+        Back
+    </button>
+
+</div>
+
 <!-- BILL PAYMENT PAGE -->
+
+
 
 <div class="dashboard-page" id="billPaymentPage">
 
-    <div class="auth-card">
+    <div class="invoice-preview-card">
 
-        <h2>Outstanding Bill</h2>
+        <div class="invoice-top">
 
-        <p><strong>Customer:</strong> Eljon Enesi</p>
+            <img
+                src="https://www.gsma.com/get-involved/gsma-membership/wp-content/uploads/2014/06/one_logo-002.png"
+                class="invoice-logo"
+                alt="One Albania"
+            >
 
-        <p><strong>Phone Number:</strong> +355687654321</p>
+            <div>
+                <h2>Mix & Max Invoice</h2>
+                <p>Monthly service bill</p>
+            </div>
 
-        <p><strong>Amount Due:</strong> 2,500 ALL</p>
+        </div>
 
-        <p><strong>Due Date:</strong> 30/06/2026</p>
+        <div class="invoice-badge">
+            UNPAID
+        </div>
+
+        <div class="invoice-main-price">
+            3,480 ALL
+        </div>
+
+        <div class="invoice-info-grid">
+
+            <div>
+                <span>Customer</span>
+                <strong>Leonard Seiti</strong>
+            </div>
+
+            <div>
+                <span>Phone Number</span>
+                <strong>+355 67 454 9130</strong>
+            </div>
+
+            <div>
+                <span>Invoice No.</span>
+                <strong>2692977/2026</strong>
+            </div>
+
+            <div>
+                <span>Billing Period</span>
+                <strong>May 2026</strong>
+            </div>
+
+            <div>
+                <span>Customer Code</span>
+                <strong>BA0000935246</strong>
+            </div>
+
+            <div>
+                <span>Due Date</span>
+                <strong>30/06/2026</strong>
+            </div>
+
+        </div>
+
+        <div class="mixmax-services">
+
+            <h3>Included in your Mix & Max plan</h3>
+
+            <div class="service-line">📱 Ultra 5G 300</div>
+            <div class="service-line">🌐 One Ultra Fiber 300</div>
+            <div class="service-line">🎁 8,000 ALL smartphone discount</div>
+            <div class="service-line">🛡️ One Safe included</div>
+            <div class="service-line">📶 Wi-Fi 6 Router</div>
+
+        </div>
 
         <button
             class="primary-btn"
             onclick="showBillPaymentMethodPage()"
         >
-            Proceed to Payment
+            Pay Invoice
         </button>
 
         <button
             class="back-btn"
-            onclick="showDashboard()"
+            onclick="showPostpaidDashboard()"
         >
             Back
         </button>
@@ -1501,23 +1979,111 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     </div>
 
-    <div class="two-by-two-grid">
+   <div class="payment-grid">
 
-        <button
-            class="dashboard-card"
-            onclick="startBillPayment('card')"
-        >
-            💳<br>Card
-        </button>
+    <div
+        class="payment-option-card"
+        onclick="startBillPayment('card')"
+    >
 
-        <button
-            class="dashboard-card"
-            onclick="startBillPayment('cash')"
-        >
-            💵<br>Cash
-        </button>
+        <div class="payment-badge">
+            Recommended
+        </div>
+
+        <div class="payment-icon">
+            💳
+        </div>
+
+        <div class="payment-title">
+            Card Payment
+        </div>
+
+        <div class="payment-subtitle">
+            Fast, secure and instant activation
+        </div>
+
+       <div class="payment-logos">
+
+    <img
+        src="https://th.bing.com/th/id/OIP.ygZGQKeZ0aBwHS7e7wbJVgHaDA?w=342&h=142&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+        class="payment-logo-img"
+        alt="Visa"
+    >
+
+    <img
+        src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+        class="payment-logo-img"
+        alt="Mastercard"
+    >
+
+    <img
+        src="https://th.bing.com/th/id/OIP.G9AGghjb_ru8VL7WqdP5AgHaEK?w=283&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+        class="payment-logo-img"
+        alt="Maestro"
+    >
+
+    <img
+        src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg"
+        class="payment-logo-img"
+        alt="Apple Pay"
+    >
+
+    <img
+        src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg"
+        class="payment-logo-img"
+        alt="Google Pay"
+    >
+
+    <img
+        src="https://cdn-icons-png.flaticon.com/512/633/633611.png"
+        class="payment-logo-img"
+        alt="Contactless"
+    >
+
+</div>
+
+        <div class="payment-benefit">
+            ✓ Instant processing
+        </div>
+
+        <div class="payment-benefit">
+            ✓ No waiting time
+        </div>
 
     </div>
+
+    <div
+        class="payment-option-card"
+        onclick="startBillPayment('cash')"
+    >
+
+        <div class="payment-icon">
+            💵
+        </div>
+
+        <div class="payment-title">
+            Cash Payment
+        </div>
+
+        <div class="payment-subtitle">
+            Pay directly through the kiosk cash acceptor
+        </div>
+
+        <div class="payment-benefit">
+            ✓ Cash accepted
+        </div>
+
+        <div class="payment-benefit">
+            ✓ Printed receipt
+        </div>
+
+        <div class="payment-benefit">
+            ✓ Immediate confirmation
+        </div>
+
+    </div>
+
+</div>
 
     <button
         class="back-btn"
@@ -1530,71 +2096,99 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <!-- FULL BILL PAGE -->
 
-<div class="dashboard-page" id="fullBillPage">
+<!-- BILL PAYMENT PAGE -->
 
-    <div class="bill-details-card">
+<div class="dashboard-page" id="billPaymentPage">
 
-        <h2 class="bill-title">
-            Invoice Details
-        </h2>
+    <div class="invoice-preview-card">
 
-        <div class="bill-customer-section">
+        <div class="invoice-top">
 
-            <div class="bill-row">
+            <img
+                src="https://www.gsma.com/get-involved/gsma-membership/wp-content/uploads/2014/06/one_logo-002.png"
+                class="invoice-logo"
+                alt="One Albania"
+            >
+
+            <div>
+                <h2>Mix & Max Invoice</h2>
+                <p>Monthly service bill</p>
+            </div>
+
+        </div>
+
+        <div class="invoice-badge">
+            UNPAID
+        </div>
+
+        <div class="invoice-main-price">
+            3,480 ALL
+        </div>
+
+        <div class="invoice-info-grid">
+
+            <div>
                 <span>Customer</span>
-                <strong>Eljon Enesi</strong>
+                <strong>Leonard Seiti</strong>
             </div>
 
-            <div class="bill-row">
-                <span>Mobile Number</span>
-                <strong>+355 68 765 4321</strong>
+            <div>
+                <span>Phone Number</span>
+                <strong>+355 67 454 9130</strong>
             </div>
 
-            <div class="bill-row">
-                <span>Invoice Number</span>
-                <strong>2487093/2026</strong>
+            <div>
+                <span>Invoice No.</span>
+                <strong>2692977/2026</strong>
             </div>
 
-            <div class="bill-row">
+            <div>
+                <span>Billing Period</span>
+                <strong>May 2026</strong>
+            </div>
+
+            <div>
+                <span>Customer Code</span>
+                <strong>BA0000935246</strong>
+            </div>
+
+            <div>
                 <span>Due Date</span>
                 <strong>30/06/2026</strong>
             </div>
 
         </div>
 
-        <div class="bill-divider"></div>
+        <div class="mixmax-services">
 
-        <div class="bill-row">
-            <span>Monthly Subscription</span>
-            <strong>2,000 ALL</strong>
-        </div>
+            <h3>Included in your Mix & Max plan</h3>
 
-        <div class="bill-row">
-            <span>Additional Usage</span>
-            <strong>500 ALL</strong>
-        </div>
-
-        <div class="bill-divider"></div>
-
-        <div class="bill-total">
-
-            <span>Total Due</span>
-
-            <strong>2,500 ALL</strong>
+            <div class="service-line">📱 Ultra 5G 300</div>
+            <div class="service-line">🌐 One Ultra Fiber 300</div>
+            <div class="service-line">🎁 8,000 ALL smartphone discount</div>
+            <div class="service-line">🛡️ One Safe included</div>
+            <div class="service-line">📶 Wi-Fi 6 Router</div>
 
         </div>
 
         <button
-            class="bill-finish-btn"
-            onclick="showDashboard()"
+            class="primary-btn"
+            onclick="showBillPaymentMethodPage()"
         >
-            Finish
+            Pay Invoice
+        </button>
+
+        <button
+            class="back-btn"
+            onclick="showPostpaidDashboard()"
+        >
+            Back
         </button>
 
     </div>
 
 </div>
-</div>
+
 <!-- FIBER COVERAGE PAGE -->
 
 <div class="dashboard-page" id="fiberCoveragePage">
@@ -1687,7 +2281,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         Activate 
     </button>
 
-    <button class="back-btn" onclick="showSimTypePage()">
+    <button class="back-btn" onclick="showPrepaidDashboard()">
     Back
 </button>
 
@@ -1703,17 +2297,87 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         <p id="selectedPackageText">Choose how you want to pay</p>
     </div>
 
-    <div class="two-by-two-grid">
+    <div class="payment-grid">
 
-        <button class="dashboard-card" onclick="selectPaymentMethod('card')">
-            💳<br>Card
-        </button>
+    <div
+        class="payment-option-card"
+        onclick="selectPaymentMethod('card')"
+    >
 
-        <button class="dashboard-card" onclick="selectPaymentMethod('cash')">
-            💵<br>Cash
-        </button>
+        <div class="payment-badge">
+            Recommended
+        </div>
+
+        <div class="payment-icon">
+            💳
+        </div>
+
+        <div class="payment-title">
+            Card Payment
+        </div>
+
+        <div class="payment-subtitle">
+            Fast, secure and instant activation
+        </div>
+
+        <div class="payment-logos">
+
+            <img src="https://th.bing.com/th/id/OIP.ygZGQKeZ0aBwHS7e7wbJVgHaDA?w=342&h=142&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" class="payment-logo-img">
+
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="payment-logo-img">
+
+            <img src="https://th.bing.com/th/id/OIP.G9AGghjb_ru8VL7WqdP5AgHaEK?w=283&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" class="payment-logo-img">
+
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" class="payment-logo-img">
+
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" class="payment-logo-img">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png" class="payment-logo-img">
+
+        </div>
+
+        <div class="payment-benefit">
+            ✓ Instant processing
+        </div>
+
+        <div class="payment-benefit">
+            ✓ No waiting time
+        </div>
 
     </div>
+
+    <div
+        class="payment-option-card"
+        onclick="selectPaymentMethod('cash')"
+    >
+
+        <div class="payment-icon">
+            💵
+        </div>
+
+        <div class="payment-title">
+            Cash Payment
+        </div>
+
+        <div class="payment-subtitle">
+            Pay directly through the kiosk cash acceptor
+        </div>
+
+        <div class="payment-benefit">
+            ✓ Cash accepted
+        </div>
+
+        <div class="payment-benefit">
+            ✓ Printed receipt
+        </div>
+
+        <div class="payment-benefit">
+            ✓ Immediate confirmation
+        </div>
+
+    </div>
+
+</div>
 
     <button class="back-btn" onclick="paymentMethodBack()">
     Back
@@ -1772,18 +2436,48 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
         <h2>✅ Payment Successful</h2>
 
-        <p id="paymentSuccessText">
-            Your package has been activated successfully.
-        </p>
+        <div id="paymentSuccessText">
+            Your payment was successful.
+        </div>
 
-        <button class="primary-btn" onclick="showDashboard()">
+        <div class="feedback-section">
+
+            <div class="feedback-title">
+                How was your experience?
+            </div>
+
+            <div
+                class="feedback-stars"
+                id="feedbackStars"
+            >
+                <span class="feedback-star" onclick="rateExperience(1)">★</span>
+                <span class="feedback-star" onclick="rateExperience(2)">★</span>
+                <span class="feedback-star" onclick="rateExperience(3)">★</span>
+                <span class="feedback-star" onclick="rateExperience(4)">★</span>
+                <span class="feedback-star" onclick="rateExperience(5)">★</span>
+            </div>
+
+            <div
+                class="feedback-thanks"
+                id="feedbackThanks"
+            >
+                ✅ Thank you for your feedback!
+            </div>
+
+        </div>
+
+        <button
+            class="bill-finish-btn"
+            onclick="goHome()"
+        >
             Finish
-        </button>
+                </button>
 
     </div>
 
 </div>
 <!-- TOP UP PAGE -->
+
 
 <div class="dashboard-page" id="topUpPage">
 
@@ -1794,12 +2488,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             <h2>Top-Up</h2>
 
             <button
-                class="topup-close"
-                onclick="showDashboard()"
-            >
-                ×
-            </button>
-
+    class="topup-close"
+    onclick="goBackToCurrentDashboard()"
+>
+    ×
+</button>
         </div>
 
         <div class="topup-section">
@@ -1891,6 +2584,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             Next
         </button>
 
+<button
+    class="back-btn"
+    onclick="goBackToCurrentDashboard()"
+>
+    Back
+</button>
+
     </div>
 
 </div>
@@ -1957,12 +2657,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     <div class="modal-box" style="width:700px; max-width:90%;">
 
-        <h3>eSIM Registration Consent</h3>
+        <h3>Registration Consent</h3>
 
         <div class="terms-content">
 
             <p>
-                Before continuing with eSIM registration,
+                Before continuing with the registration,
                 you must confirm that:
             </p>
 
@@ -2020,7 +2720,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
             <button
     class="topup-close"
-    onclick="showPrepaidDashboard()"
+    onclick="goBackToCurrentDashboard()"
 >
     ×
 </button>
@@ -2122,9 +2822,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             Continue
         </button>
 
-        <button
+      <button
     class="back-btn"
-    onclick="showPrepaidDashboard()"
+    onclick="goBackToCurrentDashboard()"
 >
     Back
 </button>
@@ -2311,10 +3011,141 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         Back
     </button>
 
+</div> <!-- roaming-results-container -->
+
+</div> <!-- roamingResultsPage -->
+
+<script src="https://unpkg.com/leaflet-omnivore/leaflet-omnivore.min.js"></script>
+
+<div id="esimPage" class="auth-page">
+
+    <div class="auth-card esim-card-page">
+
+        <h2>
+    Scan Your
+    <span>eSIM QR Code</span>
+</h2>
+
+        <p>
+    Flip your eSIM card to reveal the QR code and activate your service.
+</p>
+
+        <div class="esim-flip-container">
+
+            <div class="esim-flip-card" id="esimFlipCard">
+
+                <!-- FRONT -->
+
+                <div class="esim-front">
+
+    <div class="esim-logo">
+        eSIM
+    </div>
+
+    <div class="one-logo">
+        ONE ALBANIA
+    </div>
+
+</div>
+                <!-- BACK -->
+
+                <div class="esim-back">
+
+                    <div class="qr-title">
+                        eSIM Activation QR Code
+                    </div>
+
+                    <div class="esim-info">
+                        PIN1: 3135
+                        <br>
+                        PUK1: 55055604
+                    </div>
+
+                    <div class="qr-wrapper">
+
+                        <img
+                            src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=ONE-ESIM-DEMO"
+                            class="esim-real-qr"
+                        >
+
+                        <div class="qr-scan-line"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div
+            id="esimSuccess"
+            class="esim-success"
+        >
+            ✅ eSIM QR Code Successfully Registered
+        </div>
+
+        <button
+            id="esimFinishBtn"
+            class="primary-btn"
+            onclick="goHome()"
+        >
+            Finish
+        </button>
+
+    </div>
+
 </div>
 
-    <script src="https://unpkg.com/leaflet-omnivore/leaflet-omnivore.min.js"></script>
+<div id="physicalSimPage" class="auth-page">
 
+    <div class="physical-sim-content">
+
+        <h2>
+            Retrieve Your
+            <span>Physical SIM Card</span>
+        </h2>
+
+        <p>
+            Your SIM card is being dispensed. Please take it from the kiosk slot.
+        </p>
+
+        <div class="sim-dispenser-animation">
+
+            <div class="kiosk-body">
+
+                <div class="kiosk-screen">
+                    SIM READY
+                </div>
+
+                <div class="sim-slot"></div>
+
+                <div class="dispensed-sim">
+
+                    <div class="sim-chip"></div>
+
+                    <span>ONE</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="physical-success">
+            ✅ Physical SIM Card Dispensed Successfully
+        </div>
+
+        <button
+            class="physical-finish-btn"
+            onclick="goHome()"
+        >
+            Complete Registration
+        </button>
+
+    </div>
+
+</div>
 <script src="script.js"></script>
 
 </body>

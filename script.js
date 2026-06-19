@@ -1,8 +1,15 @@
 let currentLanguage = "en";
 
 let previousPage = "";
+let currentCustomerType = "";
 let userLoggedIn = false;
 let selectedSimType = "";
+let contractRead = false;
+let signatureExists = false;
+let signatureCanvas = null;
+let signatureCtx = null;
+let isSigning = false;
+
 const translations = {
     en: {
         mainTitle: "ONE E-KIOSK",
@@ -235,11 +242,16 @@ const pages = [
 "roamingPage",
 "roamingResultsPage",
 "customerInfoPage",
+"idScanPage",
 "faceVerificationPage",
 "simTypePage",
-"idScanPage",
+"contractPage",
+"contractQrPage",
+"esimPage",
+"physicalSimPage",
     "prepaidUserDashboard",
-    "postpaidUserDashboard"
+    "postpaidUserDashboard",
+    "postpaidAddOnPage"
 ];
 
 pages.forEach(function(pageId) {
@@ -262,7 +274,17 @@ if(logoutBtn){
   logoutBtn.style.display = "none";
 }
 
-} 
+const feedbackWidget =
+    document.getElementById(
+        "feedbackWidget"
+    );
+
+if(feedbackWidget){
+    feedbackWidget.style.display =
+        "none";
+}
+
+}
 
 function showPhonePage() {
     hideAllPages();
@@ -392,19 +414,23 @@ function showDashboard() {
 
     if (phoneNumber === "681234567") {
 
-        document.getElementById(
-            "prepaidUserDashboard"
-        ).style.display = "flex";
+    currentCustomerType = "prepaid";
 
-    }
+    document.getElementById(
+        "prepaidUserDashboard"
+    ).style.display = "flex";
 
-    else if (phoneNumber === "687654321") {
+}
 
-        document.getElementById(
-            "postpaidUserDashboard"
-        ).style.display = "flex";
+else if (phoneNumber === "687654321") {
 
-    }
+    currentCustomerType = "postpaid";
+
+    document.getElementById(
+        "postpaidUserDashboard"
+    ).style.display = "flex";
+
+}
 
     else {
 
@@ -458,6 +484,32 @@ function showPrepaidPage() {
     document.getElementById("cornerLogo").style.display = "block";
 
     updateTexts();
+}
+
+function showPostpaidDashboard(){
+
+    hideAllPages();
+
+    document.getElementById(
+        "postpaidUserDashboard"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "cornerLogo"
+    ).style.display = "block";
+
+    document.getElementById(
+        "logoutBtn"
+    ).style.display = "block";
+}
+
+function goBackToCurrentDashboard(){
+
+    if(currentCustomerType === "postpaid"){
+        showPostpaidDashboard();
+    }else{
+        showPrepaidDashboard();
+    }
 }
 
 function showGuestServices() {
@@ -1047,8 +1099,54 @@ function startPaymentLoading(){
         document.getElementById("paymentSuccessPage").style.display = "flex";
         document.getElementById("cornerLogo").style.display = "block";
 
-        document.getElementById("paymentSuccessText").innerText =
-            selectedPackageName + " has been activated successfully.";
+        if(previousPage === "newNumberRegistration"){
+
+    document.getElementById("paymentSuccessText").innerHTML =
+    `
+        Registration completed successfully.
+        <br><br>
+
+        <button
+            class="primary-btn"
+            onclick="showContractQrPage()"
+        >
+            Receive Contract
+        </button>
+    `;
+}
+else{
+
+    if(previousPage === "postpaidTopUpSomeoneElse"){
+
+        document.getElementById("paymentSuccessText").innerHTML =
+        `
+            Top-Up completed successfully.
+            <br><br>
+
+            <button
+                class="primary-btn"
+                onclick="showPostpaidDashboard()"
+            >
+                Finish
+            </button>
+        `;
+
+    }else{
+
+        document.getElementById("paymentSuccessText").innerHTML =
+        `
+            Payment completed successfully.
+            <br><br>
+
+            <button
+                class="primary-btn"
+                onclick="showPrepaidDashboard()"
+            >
+                Finish
+            </button>
+        `;
+    }
+}
 
     }, 2000);
 }
@@ -1056,6 +1154,8 @@ let selectedTopUpAmount = 1000;
 let selectedTopUpPayment = "card";
 
 function showTopUpPage(){
+
+    previousPage = currentCustomerType + "TopUp";
 
     hideAllPages();
 
@@ -1124,6 +1224,8 @@ let selectedOtherTopUpPayment = "card";
 
 function showTopUpSomeoneElsePage(){
 
+    previousPage = currentCustomerType + "TopUpSomeoneElse";
+
     hideAllPages();
 
     document.getElementById(
@@ -1167,7 +1269,11 @@ function selectOtherTopUpPayment(method){
     event.currentTarget.classList.add("active");
 }
 
+
+
 function continueOtherTopUpPayment(){
+
+previousPage = currentCustomerType + "TopUpSomeoneElse";
 
     const recipient =
         document.getElementById(
@@ -1286,22 +1392,51 @@ function startBillPayment(method){
             "cornerLogo"
         ).style.display = "block";
 
+        const invoiceLink =
+            window.location.origin +
+            window.location.pathname.replace("index.html", "") +
+            "invoice-mixmax.html";
+
+        const qrUrl =
+            "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=" +
+            encodeURIComponent(invoiceLink);
+
         document.getElementById(
             "paymentSuccessText"
         ).innerHTML = `
-            Bill paid successfully.<br><br>
+            <div class="invoice-success-box">
 
-            <button
-                class="primary-btn"
-                onclick="showFullBillPage()"
-            >
-                View Full Bill
-            </button>
+                <h3>Mix & Max Invoice Paid</h3>
+
+                <p>
+                    Invoice No: <strong>2692977/2026</strong>
+                </p>
+
+                <p>
+                    Amount Paid: <strong>3,480 ALL</strong>
+                </p>
+
+                <p>
+                    Scan this QR code to download your invoice on your phone.
+                </p>
+
+                <img
+                    src="${qrUrl}"
+                    class="invoice-success-qr"
+                    alt="Invoice QR"
+                >
+
+              <button
+    class="primary-btn"
+    onclick="showPostpaidDashboard()"
+>
+    Back To Dashboard
+</button>
+            </div>
         `;
 
     },2000);
 }
-
 function showFullBillPage(){
 
     hideAllPages();
@@ -1313,8 +1448,26 @@ function showFullBillPage(){
     document.getElementById(
         "cornerLogo"
     ).style.display = "block";
+
+    const invoiceLink =
+        window.location.origin +
+        window.location.pathname.replace("index.html", "") +
+        "invoice-mixmax.html";
+
+    const qrImage =
+        document.getElementById(
+            "invoiceQrImage"
+        );
+
+    if(qrImage){
+
+        qrImage.src =
+            "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
+            encodeURIComponent(invoiceLink);
+    }
 }
 const ads = [
+    
     {
         image: "https://apigw-prd.one.al/oneal/v1/uploads/828292320_my_one_app_27e122577b.png",
         title: "My One App",
@@ -1356,11 +1509,23 @@ setInterval(rotateAds, 5000);
 
 function showHomeFromAds(){
 
-    document.getElementById("adsPage").style.display = "none";
+    hideAllPages();
 
-    document.getElementById("homePage").style.display = "block";
+    document.getElementById(
+        "adsPage"
+    ).style.display = "none";
 
-    document.getElementById("cornerLogo").style.display = "none";
+    document.getElementById(
+        "homePage"
+    ).style.display = "block";
+
+    document.getElementById(
+        "cornerLogo"
+    ).style.display = "none";
+
+    document.getElementById(
+        "feedbackWidget"
+    ).style.display = "flex";
 }
 function showRoamingPage(){
 
@@ -1492,7 +1657,16 @@ function paymentMethodBack(){
     else if(previousPage === "packageActivation"){
         showPackageActivationPage();
     }
+
+    else if(previousPage === "prepaidTopUp" || previousPage === "postpaidTopUp"){
+        showTopUpPage();
+    }
+
+    else if(previousPage === "prepaidTopUpSomeoneElse" || previousPage === "postpaidTopUpSomeoneElse"){
+        showTopUpSomeoneElsePage();
+    }
 }
+
 function goHome(){
 
     userLoggedIn = false;
@@ -1502,6 +1676,9 @@ function goHome(){
     document.getElementById(
         "homePage"
     ).style.display = "block";
+    document.getElementById(
+    "feedbackWidget"
+).style.display = "flex";
 
     document.getElementById(
         "cornerLogo"
@@ -1577,9 +1754,22 @@ function startIdScan(){
         "privacyModalContent"
     ).innerHTML =
         `
-        <div class="loader"></div>
-        <br>
-        Reading identity document...
+        <div style="text-align:center;">
+
+            <div class="loader"></div>
+
+            <br>
+
+            <div style="
+                text-align:center;
+                font-size:20px;
+                color:white;
+                font-weight:500;
+            ">
+                Reading identity document...
+            </div>
+
+        </div>
         `;
 
     document.getElementById(
@@ -1589,49 +1779,45 @@ function startIdScan(){
 
     setTimeout(function(){
 
-       setTimeout(function(){
-
-    document.getElementById(
-        "privacyModalInfo"
-    ).style.display = "none";
-
-    hideAllPages();
-
-    document.getElementById(
-        "customerInfoPage"
-    ).style.display = "flex";
-
-    document.getElementById(
-        "cornerLogo"
-    ).style.display = "block";
-
-},3000);
-
         document.getElementById(
             "privacyModalContent"
-        ).innerHTML = 
-            `
-            ✅ Identity document successfully scanned.
-            <br><br>
-            Proceeding to face verification...
-            `;
+        ).innerHTML =
+        `
+        <div style="text-align:center;">
+
+            <div style="font-size:22px;">
+                ✅ Identity document successfully scanned.
+            </div>
+
+            <br>
+
+            <div style="font-size:20px;">
+                Proceeding to face verification...
+            </div>
+
+        </div>
+        `;
+
+        setTimeout(function(){
+
+            document.getElementById(
+                "privacyModalInfo"
+            ).style.display = "none";
+
+            hideAllPages();
+
+            document.getElementById(
+                "customerInfoPage"
+            ).style.display = "flex";
+
+            document.getElementById(
+                "cornerLogo"
+            ).style.display = "block";
+
+        },3000);
 
     },3000);
 }
-setInterval(() => {
-
-    const screen =
-        document.querySelector(".scanner-screen");
-
-    if(!screen) return;
-
-    screen.innerText =
-        screen.innerText === "Insert ID"
-        ? "Scan Below"
-        : "Insert ID";
-
-}, 2500);
-
 
 function showFaceVerificationPage(){
 
@@ -1644,6 +1830,15 @@ function showFaceVerificationPage(){
     document.getElementById(
         "cornerLogo"
     ).style.display = "block";
+
+    const video = document.getElementById("verificationVideo");
+
+    if(video){
+        video.load();
+        video.play().catch(function(error){
+            console.log("Video autoplay blocked:", error);
+        });
+    }
 }
 
 function showCustomerInfoPage(){
@@ -1733,11 +1928,401 @@ function selectSimType(type, card){
 function continueSimType(){
 
     if(selectedSimType === ""){
-
         alert("Please select a SIM type.");
-
         return;
     }
 
-    showPackageActivationPage();
+    showContractPage();
+}
+
+function showContractPage(){
+
+    hideAllPages();
+
+    document.getElementById("contractPage").style.display = "flex";
+    document.getElementById("cornerLogo").style.display = "block";
+
+    contractRead = false;
+    signatureExists = false;
+
+    document.getElementById("continueContractBtn").disabled = true;
+
+    const container = document.getElementById("contractContainer");
+
+    if(container){
+        container.scrollTop = 0;
+    }
+
+    const simText = document.getElementById("contractSimType");
+
+    if(simText){
+        simText.innerText =
+            selectedSimType === "esim" ? "eSIM" : "Physical SIM";
+    }
+
+    setTimeout(setupSignaturePad, 100);
+}
+
+function enableSignatureSection(){
+
+    const container = document.getElementById("contractContainer");
+
+    if(!container) return;
+
+    const reachedBottom =
+        container.scrollTop + container.clientHeight >=
+        container.scrollHeight - 30;
+
+    if(reachedBottom){
+        contractRead = true;
+        checkContractReady();
+    }
+}
+
+function checkContractReady(){
+
+    const btn = document.getElementById("continueContractBtn");
+
+    if(btn){
+        btn.disabled = !(contractRead && signatureExists);
+    }
+}
+
+function setupSignaturePad(){
+
+    signatureCanvas = document.getElementById("signaturePad");
+
+    if(!signatureCanvas) return;
+
+    signatureCtx = signatureCanvas.getContext("2d");
+
+    signatureCtx.lineWidth = 4;
+    signatureCtx.lineCap = "round";
+    signatureCtx.lineJoin = "round";
+    signatureCtx.strokeStyle = "#24113a";
+
+    signatureCanvas.onmousedown = startSignature;
+    signatureCanvas.onmousemove = drawSignature;
+    signatureCanvas.onmouseup = stopSignature;
+    signatureCanvas.onmouseleave = stopSignature;
+
+    signatureCanvas.ontouchstart = startTouchSignature;
+    signatureCanvas.ontouchmove = drawTouchSignature;
+    signatureCanvas.ontouchend = stopSignature;
+}
+
+function getCanvasPosition(event){
+
+    const rect = signatureCanvas.getBoundingClientRect();
+
+    return {
+        x: (event.clientX - rect.left) * (signatureCanvas.width / rect.width),
+        y: (event.clientY - rect.top) * (signatureCanvas.height / rect.height)
+    };
+}
+
+function startSignature(event){
+
+    isSigning = true;
+
+    const pos = getCanvasPosition(event);
+
+    signatureCtx.beginPath();
+    signatureCtx.moveTo(pos.x, pos.y);
+}
+
+function drawSignature(event){
+
+    if(!isSigning) return;
+
+    const pos = getCanvasPosition(event);
+
+    signatureCtx.lineTo(pos.x, pos.y);
+    signatureCtx.stroke();
+
+    signatureExists = true;
+    checkContractReady();
+}
+
+function stopSignature(){
+    isSigning = false;
+}
+
+function startTouchSignature(event){
+
+    event.preventDefault();
+
+    startSignature(event.touches[0]);
+}
+
+function drawTouchSignature(event){
+
+    event.preventDefault();
+
+    drawSignature(event.touches[0]);
+}
+
+function clearSignature(){
+
+    if(!signatureCtx || !signatureCanvas) return;
+
+    signatureCtx.clearRect(
+        0,
+        0,
+        signatureCanvas.width,
+        signatureCanvas.height
+    );
+
+    signatureExists = false;
+    checkContractReady();
+}
+
+function showNewNumberPayment(){
+
+    previousPage = "newNumberRegistration";
+
+    selectedPackageName = "New Number Registration Fee";
+    selectedPackagePrice = "500 Lek";
+
+    hideAllPages();
+
+    document.getElementById("paymentMethodPage").style.display = "flex";
+    document.getElementById("cornerLogo").style.display = "block";
+
+    document.getElementById("selectedPackageText").innerText =
+        "New Number Registration Fee - 500 Lek";
+}
+
+
+function showContractQrPage(){
+
+    hideAllPages();
+
+    document.getElementById(
+        "contractQrPage"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "cornerLogo"
+    ).style.display = "block";
+
+    const qrImage =
+        document.getElementById("contractQrImage");
+
+    const contractLink =
+        window.location.origin +
+        window.location.pathname.replace("index.html", "") +
+        "contract-view.html";
+
+    qrImage.src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=" +
+        encodeURIComponent(contractLink);
+}
+function finishRegistration(){
+
+    if(selectedSimType === "esim"){
+
+        showEsimPage();
+
+    }else{
+
+        showPhysicalSimPage();
+
+    }
+}
+
+function showEsimPage(){
+
+    hideAllPages();
+
+    document.getElementById(
+        "esimPage"
+    ).style.display = "flex";
+
+    const card =
+    document.getElementById(
+        "esimFlipCard"
+    );
+
+    const success =
+    document.getElementById(
+        "esimSuccess"
+    );
+
+    const finishBtn =
+    document.getElementById(
+        "esimFinishBtn"
+    );
+
+    card.classList.remove(
+        "flipped"
+    );
+
+    success.style.display =
+        "none";
+
+    finishBtn.style.display =
+        "none";
+
+   setTimeout(function(){
+
+    card.style.transition =
+        "transform 2.5s cubic-bezier(.22,1,.36,1)";
+
+    card.classList.add(
+        "flipped"
+    );
+
+},1000);
+
+    setTimeout(function(){
+
+        success.style.display =
+            "block";
+
+    },4500);
+
+    setTimeout(function(){
+
+        finishBtn.style.display =
+            "block";
+
+    },5500);
+}
+
+
+function showPhysicalSimPage(){
+
+    hideAllPages();
+
+    document.getElementById(
+        "physicalSimPage"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "cornerLogo"
+    ).style.display = "block";
+}
+function openFeedbackModal(){
+
+    alert(
+        "Thank you for your feedback!"
+    );
+
+}
+function rateExperience(rating){
+
+    const stars =
+        document.querySelectorAll(
+            "#feedbackStars .feedback-star"
+        );
+
+    stars.forEach((star,index)=>{
+
+        if(index < rating){
+
+            star.classList.add("active");
+
+        }else{
+
+            star.classList.remove("active");
+        }
+
+    });
+
+    document.getElementById(
+        "feedbackThanks"
+    ).style.display = "block";
+
+    console.log(
+        "Customer Rating:",
+        rating
+    );
+
+}
+
+let selectedPostpaidAddOnName = "";
+let selectedPostpaidAddOnPrice = "";
+
+function showPostpaidAddOnPage(){
+
+    hideAllPages();
+
+    document.getElementById(
+        "postpaidAddOnPage"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "cornerLogo"
+    ).style.display = "block";
+}
+
+function selectPostpaidAddOn(card, addonName, addonPrice){
+
+    const cards =
+        document.querySelectorAll(
+            "#postpaidAddOnPage .addon-card"
+        );
+
+    cards.forEach(function(item){
+        item.classList.remove("selected");
+    });
+
+    card.classList.add("selected");
+
+    selectedPostpaidAddOnName = addonName;
+    selectedPostpaidAddOnPrice = addonPrice;
+}
+
+function activatePostpaidAddOn(){
+
+    if(selectedPostpaidAddOnName === ""){
+
+        alert("Please select an add-on first.");
+        return;
+    }
+
+    hideAllPages();
+
+    document.getElementById(
+        "paymentSuccessPage"
+    ).style.display = "flex";
+
+    document.querySelector(
+    "#paymentSuccessPage h2"
+).innerHTML = "✅ Add-On Activated";
+
+    document.getElementById(
+        "cornerLogo"
+    ).style.display = "block";
+
+    document.getElementById(
+        "paymentSuccessText"
+    ).innerHTML =
+    `
+        <div class="invoice-success-box">
+
+            <p>
+                <strong>${selectedPostpaidAddOnName}</strong>
+                has been successfully activated.
+            </p>
+
+            <p>
+                Price:
+                <strong>${selectedPostpaidAddOnPrice}</strong>
+            </p>
+
+            <p>
+                This amount will be added to your next monthly bill.
+            </p>
+
+            <button
+                class="primary-btn"
+                onclick="showPostpaidDashboard()"
+            >
+                Back to Dashboard
+            </button>
+
+        </div>
+    `;
 }
