@@ -2001,14 +2001,27 @@ function setupSignaturePad(){
     signatureCtx.lineJoin = "round";
     signatureCtx.strokeStyle = "#24113a";
 
-    signatureCanvas.onmousedown = startSignature;
-    signatureCanvas.onmousemove = drawSignature;
-    signatureCanvas.onmouseup = stopSignature;
-    signatureCanvas.onmouseleave = stopSignature;
+    signatureCanvas.style.touchAction = "none";
 
-    signatureCanvas.ontouchstart = startTouchSignature;
-    signatureCanvas.ontouchmove = drawTouchSignature;
-    signatureCanvas.ontouchend = stopSignature;
+    signatureCanvas.addEventListener(
+        "pointerdown",
+        startSignature
+    );
+
+    signatureCanvas.addEventListener(
+        "pointermove",
+        drawSignature
+    );
+
+    signatureCanvas.addEventListener(
+        "pointerup",
+        stopSignature
+    );
+
+    signatureCanvas.addEventListener(
+        "pointerleave",
+        stopSignature
+    );
 }
 
 function getCanvasPosition(event){
@@ -2029,6 +2042,8 @@ function startSignature(event){
 
     signatureCtx.beginPath();
     signatureCtx.moveTo(pos.x, pos.y);
+
+    event.preventDefault();
 }
 
 function drawSignature(event){
@@ -2042,6 +2057,8 @@ function drawSignature(event){
 
     signatureExists = true;
     checkContractReady();
+
+    event.preventDefault();
 }
 
 function stopSignature(){
@@ -2049,16 +2066,12 @@ function stopSignature(){
 }
 
 function startTouchSignature(event){
-
     event.preventDefault();
-
     startSignature(event.touches[0]);
 }
 
 function drawTouchSignature(event){
-
     event.preventDefault();
-
     drawSignature(event.touches[0]);
 }
 

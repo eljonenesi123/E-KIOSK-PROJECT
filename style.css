@@ -4223,3 +4223,8 @@
     font-size:28px;
     font-weight:900;
 }
+
+#signaturePad{
+    touch-action:none;
+    cursor:crosshair;
+}
