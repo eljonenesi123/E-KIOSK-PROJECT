@@ -4228,3 +4228,129 @@
     touch-action:none;
     cursor:crosshair;
 }
+/* MOBILE VIEW FIX */
+@media screen and (max-width: 768px) {
+
+    body {
+        overflow-y: auto;
+        align-items: flex-start;
+        padding: 20px 0;
+    }
+
+    .auth-page,
+    .dashboard-page,
+    .guest-dashboard-page,
+    .prepaid-page {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        padding: 90px 15px 30px;
+        overflow-y: auto;
+    }
+
+    .auth-card,
+    .container {
+        width: 92%;
+        max-width: 420px;
+        padding: 30px 20px;
+        border-radius: 24px;
+    }
+
+    .auth-card h2,
+    .welcome-section h2,
+    .prepaid-title {
+        font-size: 26px;
+        line-height: 1.2;
+    }
+
+    .auth-card p,
+    .welcome-section p {
+        font-size: 15px;
+    }
+
+    .dashboard-grid,
+    .guest-dashboard-grid,
+    .mobile-grid,
+    .internet-grid,
+    .iptv-speed-grid,
+    .two-by-two-grid {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 18px;
+        width: 92%;
+    }
+
+    .dashboard-card,
+    .guest-dashboard-grid .dashboard-card,
+    .mobile-grid .dashboard-card,
+    .package-card,
+    .activation-package-card,
+    .fiber-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: auto !important;
+        min-height: 120px;
+        padding: 22px;
+        font-size: 18px;
+    }
+
+    .primary-btn,
+    .start-btn {
+        padding: 16px;
+        font-size: 18px;
+    }
+
+    .corner-logo {
+        top: -35px;
+        left: 5px;
+    }
+
+    .corner-logo img {
+        width: 130px;
+        height: 130px;
+    }
+
+    .language-switch {
+        top: 15px;
+        right: 15px;
+        gap: 8px;
+    }
+
+    .flag {
+        width: 34px;
+        height: 34px;
+    }
+
+    .contract-card {
+        width: 95%;
+        padding: 25px 15px;
+    }
+
+    .contract-scroll {
+        max-height: 55vh;
+        padding: 15px;
+    }
+
+    #signaturePad {
+        width: 100% !important;
+        height: 180px !important;
+    }
+
+    .face-comparison,
+    .sim-type-grid,
+    .payment-options,
+    .info-form {
+        grid-template-columns: 1fr !important;
+        flex-direction: column;
+    }
+
+    .face-box,
+    .sim-type-card,
+    .payment-card {
+        width: 100% !important;
+    }
+
+    .background-logo {
+        width: 700px;
+    }
+}
